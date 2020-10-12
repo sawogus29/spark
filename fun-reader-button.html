@@ -7,8 +7,7 @@
   <title>The HTML5 Herald</title>
   <meta name="description" content="The HTML5 Herald">
   <meta name="author" content="SitePoint">
-
-  <link rel="stylesheet" href="css/styles.css?v=1.0">
+  <script src="lib/swiped-events.js"></script>
   <style>
   	body {
   		background-color: #FFFFFF;
@@ -82,17 +81,30 @@
     }
   }
 
+  var spans_i = 0;
   function bFunction() {
-    if (bFunction.i == undefined){
-      bFunction.i = 0;
+    if (spans_i == undefined){
+      spans_i = 0;
     }
     
-    if(bFunction.i >= spans.length){
+    if(spans_i >= spans.length){
       return;
     }
 
-    spans[bFunction.i].style.color = "#000000";
-    bFunction.i++;
+    spans[spans_i].style.color = "#000000";
+    spans_i++;
+  }
+
+
+  window.onload = function() {
+    document.getElementById("show").addEventListener('swiped-left', function(e) {
+    // document.addEventListener('swiped-left', function(e) {
+        console.log(e.type);
+        console.log(e.target);
+        if(spans_i > 0) spans_i--;
+        spans[spans_i].style.color = "#f0f8ff";
+    });
+
   }
   </script>
 
