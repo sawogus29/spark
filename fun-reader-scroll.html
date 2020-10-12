@@ -18,7 +18,7 @@
   		background-color: #FFFFFF;
   		color: #000;
       text-align: justify;
-      line-height: 300%;
+      line-height: 600%;
   	}
       span {
           color:aliceblue;
@@ -94,7 +94,7 @@
   	// }
     for ( var i = 0; i < spans.length; i++){
       rect = spans[i].getBoundingClientRect();
-      if(rect.top <= window.innerHeight/2){
+      if(rect.top <= window.innerHeight/3){
         spans[i].style.color = "#000000";
       }else{
         spans[i].style.color = "#f0f8ff";
