@@ -18,7 +18,7 @@
   		background-color: #FFFFFF;
   		color: #000;
       text-align: justify;
-      line-height: 600%;
+      line-height: 800%;
   	}
       span {
           color:aliceblue;
@@ -36,7 +36,7 @@
 </head>
 <body>
   <header></header>
-  <article>
+  <article onmousewheel="wheelDistance">
   <p>The Real Meaning of Ich Bin ein Berliner</p>
   <p>In West Berlin in 1963, President Kennedy delivered <span>his most eloquent</span> speech <span>on the world stage</span>. 
       The director <span>of the John F. Kennedy Presidential Library and Museum</span> tells the <span>evocative</span> story <span>behind JFK’s words</span>.</p>
@@ -79,28 +79,35 @@
     }
   }
 
-  
-  function scFunction() {
-  	// if(scFunction.i == undefined){
-  	// 	scFunction.i = 0;
-  	// }
 
-  	// if(window.pageXOffset >= 50){
-  	// 	spans[scFunction.i].style.color = "#000000";
-  	// 	if(scFunction.i < spans.length) scFunction.i++;
-  	// }else if(window.pageXOffset <= -50){
-  	// 	if(scFunction.i > 0) scFunction.i--;
-  	// 	spans[scFunction.i].style.color = "#f0f8ff";
-  	// }
+  function scFunction() {
+  	if(scFunction.i == undefined){
+  	 	scFunction.i = 0;
+  	}
+
     for ( var i = 0; i < spans.length; i++){
-      rect = spans[i].getBoundingClientRect();
-      if(rect.top <= window.innerHeight/3){
+      rect = spans[i].getClientRects()[0];
+
+      if(rect.top + (rect.x/window.innerHeight) * 1.5 * rect.height <= window.innerHeight/3){
         spans[i].style.color = "#000000";
       }else{
         spans[i].style.color = "#f0f8ff";
       }
     }
   }
+
+  var wheelDistance = function(evt) { 
+      
+    // wheelDelta inidicates how  
+    // Far the wheel is turned 
+    var w = evt.wheelDelta; 
+          
+    // Returning normalized value 
+    return w / 1000; 
+  } 
+    
+  // Adding event listener for some element 
+  // somEl.addEventListener("mousewheel", wheelDistance); 
 
 	window.onscroll = scFunction; 
 
