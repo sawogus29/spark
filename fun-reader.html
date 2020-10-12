@@ -23,6 +23,16 @@
           display: inline;
           padding: 0px 3px;
       }
+
+      #show {
+        position: fixed;
+        width : 50px;
+        height: 50px;
+        bottom: 10px;
+        right: 10px;
+      }
+
+
   </style>
 
 </head>
@@ -55,6 +65,7 @@
     They sought to express solidarity with West Berlin’s plight without offending the Soviets, but striking that balance proved impossible. 
     JFK was disappointed in the draft he was given. 
     The American commandant in Berlin called the text “terrible,” and the president agreed.</p>
+    <button id="show" onclick="bFunction()">show</button>
 <body>
   <script>
   var spans = document.getElementsByTagName("span");
@@ -66,6 +77,19 @@
       this.parentElement.style.color == "rgb(0, 0, 0)"){
       this.style.color = "#000000";
     }
+  }
+
+  function bFunction() {
+    if (bFunction.i == undefined){
+      bFunction.i = 0;
+    }
+    
+    if(bFunction.i >= spans.length){
+      return;
+    }
+
+    spans[bFunction.i].style.color = "#000000";
+    bFunction.i++;
   }
   </script>
 
