@@ -62,7 +62,10 @@
       spans[i].addEventListener("click", myFunction);
   }
   function myFunction(evt) {
-    evt.target.style.color = "#000000";
+    if (this.parentElement.nodeName != "SPAN" || 
+      this.parentElement.style.color == "rgb(0, 0, 0)"){
+      this.style.color = "#000000";
+    }
   }
   </script>
 
