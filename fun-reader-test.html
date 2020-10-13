@@ -1,0 +1,136 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>The HTML5 Herald</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+
+  <link rel="stylesheet" href="css/styles.css?v=1.0">
+  <style>
+    header {
+      height: 50vh;
+    }
+
+  	body {
+  		background-color: #FFFFFF;
+  		color: #000;
+      font-size: 2vw;
+      text-align: justify;
+      line-height: 7vw;
+  	}
+      span {
+          color:aliceblue;
+          border-style: solid;
+          border-width: 0.05em;
+          border-radius: 0.5em;
+          display: inline;
+          padding: 0em 0.2em;
+      }
+
+      header > button {
+        width: 15vw;
+        height: 15vw;
+      } 
+
+
+
+  </style>
+
+</head>
+<body>
+  <header>
+    <button onclick="decFont()">decrease font size</button>
+    <button onclick="incFont()">increase font size</button>
+  </header>
+  <article>
+  <p>In old times, <span>when wishing was having</span>, there lived a King <span>whose
+daughters were all beautiful</span>, but the youngest was so beautiful that
+the sun <span>itself</span>, <span>which has seen so much</span>, was astonished <span>whenever it
+shone in her face</span>.
+
+<span>Close by the King’s castle</span> lay a great dark forest, and <span>under an old
+lime-tree in the forest</span>, was a fountain. <span>When the day was very warm</span>,
+the King’s Child went out <span>into the forest</span> and sat down <span>by the side of
+the cool fountain</span>, and <span>when she was dull</span> she took a golden ball, and
+threw it <span>up in the air</span> and caught it. And this ball was <span>her favorite</span>
+plaything.
+
+Now, <span>it so happened one day</span>, the King’s Daughter’s golden ball did not
+fall <span>into the little hand <span>which she was holding up for it</span></span>, <span>but on to
+the ground</span>, and rolled <span>straight into the water</span>. The King’s Daughter
+followed it <span>with her eyes</span>; but it vanished, and the well was deep, <span>so
+deep that the bottom could not be seen</span>. <span>On this</span> she began to cry, and
+cried <span>louder and louder</span>, and could not be comforted.
+
+And <span>as she thus lamented</span>, some one said to her, “What ails you, <span>King’s
+Daughter</span>? You weep <span>so that <span>even a stone</span> would show pity</span>.”
+
+She looked round <span>to the side <span>from whence the voice came</span></span>, and saw
+a Frog stretching <span>its thick, ugly</span> head from the water. “<span>Ah! old
+water-splasher, is it you?</span>” said she; “<span>I am weeping <span>for my golden ball,
+<span>which has fallen into the fountain</span></span>.</span>”
+
+“<span>Be quiet, and do not weep</span>,” answered the Frog, “<span>I can help you. But
+what will you give me <span>if I bring your plaything up again</span>?</span>”
+
+“Whatever you will have, <span>dear Frog</span>,” said she--“my clothes, my pearls
+and jewels, and even the golden crown <span>which I am wearing</span>.”
+
+The Frog answered, “I do not care <span>for your clothes, your pearls and
+jewels, or your golden crown</span>, but <span>if <span>you will love me</span> and <span>let me be
+your companion and playfellow</span>, and <span>sit by you at your little table</span>, and
+<span>eat off your little golden plate</span>, and <span>drink out of your little cup</span>, and
+<span>sleep in your little bed</span></span>--<span>if you will promise me this</span>, I will go down
+below, and bring your golden ball <span>up again</span>.”
+
+“<span>Oh, yes</span>,” said she, “I promise you <span>all you wish</span>, <span>if you will but bring
+my ball back again</span>.” She, <span>however</span>, thought, “How <span>the silly</span> Frog does
+talk! He lives <span>in the water <span>with the other frogs and croaks</span></span>, and can be
+<span>no companion <span>to any human being</span></span>!”
+
+But the Frog, <span>when he had received this promise</span>, put his head <span>into the
+water</span> and sank down. <span>In a short time</span> he came swimming up again <span>with
+the ball in his mouth</span>, and threw it <span>on the grass</span>. The King’s Daughter
+was delighted <span>to see her pretty plaything once more</span>, and picked it up,
+and ran away <span>with it</span>.</p>
+  </article>
+  <script>
+  var spans = document.getElementsByTagName("span");
+  for ( var i = 0; i < spans.length; i++){
+      spans[i].addEventListener("click", myFunction);
+  }
+  function myFunction(evt) {
+    if (this.parentElement.nodeName != "SPAN" || 
+      this.parentElement.style.color == "rgb(0, 0, 0)"){
+      this.style.color = "#000000";
+    }
+  }
+
+  size = 1;
+
+  function incFont(){
+      size += 0.25;
+      refreshFont();
+  }
+
+  function decFont(){
+    if(size > 1){
+      size -= 0.25;
+    }
+    refreshFont();
+  }
+
+  function refreshFont(){
+    document.getElementsByTagName("BODY")[0].style.fontSize = size + "vw";
+    document.getElementsByTagName("BODY")[0].style.lineHeight = size *2 + "vw";
+  }
+
+  </script>
+
+
+
+</body>
+</html>
