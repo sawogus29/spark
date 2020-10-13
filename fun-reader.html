@@ -30,6 +30,11 @@
           padding: 0em 0.2em;
       }
 
+      header > button {
+        width: 15vw;
+        height: 15vw;
+      } 
+
 
 
   </style>
@@ -86,13 +91,13 @@
   size = 1;
 
   function incFont(){
-      size++;
+      size += 0.25;
       refreshFont();
   }
 
   function decFont(){
     if(size > 1){
-      size--;
+      size -= 0.25;
     }
     refreshFont();
   }

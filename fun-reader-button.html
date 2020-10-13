@@ -16,9 +16,9 @@
   	body {
   		background-color: #FFFFFF;
   		color: #000;
-      font-size: 15pt;
+      font-size: 2vw;
       text-align: justify;
-      line-height: 8vw;
+      line-height: 7vw;
   	}
       span {
           color:aliceblue;
@@ -38,12 +38,20 @@
         right: 10vw;
       }
 
+      header > button {
+        width: 15vw;
+        height: 15vw;
+      }
+
 
   </style>
 
 </head>
 <body>
-  <header></header>
+  <header>
+    <button onclick="decFont()">decrease font size</button>
+    <button onclick="incFont()">increase font size</button>
+  </header>
   <article>
   <p>The Real Meaning of Ich Bin ein Berliner</p>
   <p>In West Berlin in 1963, President Kennedy delivered <span>his most eloquent</span> speech <span>on the world stage</span>. 
@@ -113,6 +121,26 @@
     });
 
   }
+
+  size = 1;
+
+  function incFont(){
+      size += 0.25;
+      refreshFont();
+  }
+
+  function decFont(){
+    if(size > 1){
+      size -= 0.25;
+    }
+    refreshFont();
+  }
+
+  function refreshFont(){
+    document.getElementsByTagName("BODY")[0].style.fontSize = size + "vw";
+    document.getElementsByTagName("BODY")[0].style.lineHeight = size *2 + "vw";
+  }
+
   </script>
 
 
