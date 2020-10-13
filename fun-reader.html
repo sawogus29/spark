@@ -17,7 +17,7 @@
   	body {
   		background-color: #FFFFFF;
   		color: #000;
-      font-size: 5vw;
+      font-size: 2vw;
       text-align: justify;
       line-height: 7vw;
   	}
@@ -36,7 +36,10 @@
 
 </head>
 <body>
-  <header><button onclick="incFont()">increase font size</button></header>
+  <header>
+    <button onclick="decFont()">decrease font size</button>
+    <button onclick="incFont()">increase font size</button>
+  </header>
   <article>
   <p>The Real Meaning of Ich Bin ein Berliner</p>
   <p>In West Berlin in 1963, President Kennedy delivered <span>his most eloquent</span> speech <span>on the world stage</span>. 
@@ -68,7 +71,6 @@
       JFK was disappointed in the draft he was given. 
       The American commandant in Berlin called the text “terrible,” and the president agreed.</p>
   </article>
-  <button id="show" onclick="bFunction()">show</button>
   <script>
   var spans = document.getElementsByTagName("span");
   for ( var i = 0; i < spans.length; i++){
@@ -81,12 +83,23 @@
     }
   }
 
+  size = 1;
+
   function incFont(){
-    if(incFont.i == undefined){
-      incFont.i = 3;
+      size++;
+      refreshFont();
+  }
+
+  function decFont(){
+    if(size > 1){
+      size--;
     }
-    incFont.i++;
-    document.getElementsByTagName("BODY")[0].style.fontSize = incFont.i + "vw";
+    refreshFont();
+  }
+
+  function refreshFont(){
+    document.getElementsByTagName("BODY")[0].style.fontSize = size + "vw";
+    document.getElementsByTagName("BODY")[0].style.lineHeight = size *2 + "vw";
   }
 
   </script>
