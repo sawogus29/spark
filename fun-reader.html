@@ -17,7 +17,7 @@
   	body {
   		background-color: #FFFFFF;
   		color: #000;
-      font-size: 3vw;
+      font-size: 5vw;
       text-align: justify;
       line-height: 7vw;
   	}
@@ -36,7 +36,7 @@
 
 </head>
 <body>
-  <header></header>
+  <header><button onclick="incFont()">increase font size</button></header>
   <article>
   <p>The Real Meaning of Ich Bin ein Berliner</p>
   <p>In West Berlin in 1963, President Kennedy delivered <span>his most eloquent</span> speech <span>on the world stage</span>. 
@@ -79,6 +79,14 @@
       this.parentElement.style.color == "rgb(0, 0, 0)"){
       this.style.color = "#000000";
     }
+  }
+
+  function incFont(){
+    if(incFont.i == undefined){
+      incFont.i = 3;
+    }
+    incFont.i++;
+    document.getElementsByTagName("BODY")[0].style.fontSize = incFont.i + "vw";
   }
 
   </script>
