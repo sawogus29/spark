@@ -9,7 +9,6 @@
   <meta name="author" content="SitePoint">
 
   <link rel="stylesheet" href="css/styles.css?v=1.0">
-  
   <style>
     header {
       height: 50vh;
@@ -18,12 +17,12 @@
   	body {
   		background-color: #FFFFFF;
   		color: #000;
-      font-size: 3vw;
+      font-size: 2vw;
       text-align: justify;
-      line-height: 800%;
+      line-height: 7vw;
   	}
       span {
-          color:aliceblue;
+          /*color:aliceblue;*/
           border-style: solid;
           border-width: 0.05em;
           border-radius: 0.5em;
@@ -31,13 +30,21 @@
           padding: 0em 0.2em;
       }
 
+      header > button {
+        width: 15vw;
+        height: 15vw;
+      } 
+
 
 
   </style>
 
 </head>
 <body>
-  <header></header>
+  <header>
+    <button onclick="decFont()">decrease font size</button>
+    <button onclick="incFont()">increase font size</button>
+  </header>
   <article>
   <p>The Real Meaning of Ich Bin ein Berliner</p>
   <p>In West Berlin in 1963, President Kennedy delivered <span>his most eloquent</span> speech <span>on the world stage</span>. 
@@ -81,26 +88,24 @@
     }
   }
 
+  size = 1;
 
-  function scFunction() {
-  	if(scFunction.i == undefined){
-  	 	scFunction.i = 0;
-  	}
-
-    for ( var i = 0; i < spans.length; i++){
-      rect = spans[i].getClientRects()[0];
-      calc = rect.top + (rect.x/window.innerHeight) * 1.5 * rect.height;
-
-      if(calc <= window.innerHeight * 3/4){
-        spans[i].style.color = "#000000";
-      }else{
-        spans[i].style.color = "#f0f8ff";
-      }
-    }
+  function incFont(){
+      size += 0.25;
+      refreshFont();
   }
 
-	window.onscroll = scFunction; 
-  
+  function decFont(){
+    if(size > 1){
+      size -= 0.25;
+    }
+    refreshFont();
+  }
+
+  function refreshFont(){
+    document.getElementsByTagName("BODY")[0].style.fontSize = size + "vw";
+    document.getElementsByTagName("BODY")[0].style.lineHeight = size *2 + "vw";
+  }
 
   </script>
 
