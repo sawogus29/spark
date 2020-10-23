@@ -21,7 +21,8 @@
       line-height: 7vw;
   	}
       span {
-          color:aliceblue;
+          /*color:aliceblue;*/
+          border-color: white;
           border-style: solid;
           border-width: 0.05em;
           border-radius: 0.5em;
@@ -90,37 +91,52 @@
       spans[i].addEventListener("click", myFunction);
   }
   function myFunction(evt) {
+    if (bFunction.isOn != true){return;}
+    
     if (this.parentElement.nodeName != "SPAN" || 
       this.parentElement.style.color == "rgb(0, 0, 0)"){
       this.style.color = "#000000";
+      this.style.borderColor = "#000000";
+      this.toggled = true;
     }
   }
 
-  var spans_i = 0;
   function bFunction() {
-    if (spans_i == undefined){
-      spans_i = 0;
+    if(bFunction.isOn == undefined){
+      bFunction.isOn = false;
+    }
+
+    if(bFunction.isOn){
+      for (var i = 0; i < spans.length; i++){
+          spans[i].style.color = "black";
+          spans[i].style.borderColor = "white";
+      }
+      bFunction.isOn = false;
+    }else{
+      for (var i =0; i< spans.length; i++){
+        if(spans[i].toggled == undefined){
+          spans[i].style.color = "aliceblue";
+          spans[i].style.borderColor = "aliceblue";
+        }else{
+          spans[i].style.color = "black";
+          spans[i].style.borderColor = "black";
+        }
+      }
+      bFunction.isOn = true;
     }
     
-    if(spans_i >= spans.length){
-      return;
-    }
-
-    spans[spans_i].style.color = "#000000";
-    spans_i++;
   }
 
 
-  window.onload = function() {
-    document.getElementById("show").addEventListener('swiped-left', function(e) {
-    // document.addEventListener('swiped-left', function(e) {
-        console.log(e.type);
-        console.log(e.target);
-        if(spans_i > 0) spans_i--;
-        spans[spans_i].style.color = "#f0f8ff";
-    });
+//   window.onload = function() {
+//     document.getElementById("show").addEventListener('swiped-left', function(e) {
+//     // document.addEventListener('swiped-left', function(e) {
+//         console.log(e.type);
+//         console.log(e.target);
+//         spans[spans_i].style.color = "#f0f8ff";
+//     });
 
-  }
+//   }
 
   size = 1;
 

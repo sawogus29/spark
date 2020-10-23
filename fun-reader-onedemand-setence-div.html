@@ -1,0 +1,156 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>The HTML5 Herald</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+
+  <style>
+    header {
+      height: 50vh;
+    }
+
+  	body {
+  		background-color: #FFFFFF;
+  		color: #000;
+      font-size: 2vw;
+      text-align: justify;
+      line-height: 7vw;
+  	}
+
+/*     div {
+      position: relative;
+    } */
+
+      span {
+/*           color:aliceblue; */
+          border-style: solid;
+          border-color: white;
+          border-width: 0.05em;
+          border-radius: 0.5em;
+          display: inline;
+          padding: 0em 0.2em;
+      }
+
+      header > button {
+        width: 15vw;
+        height: 15vw;
+      } 
+
+  </style>
+
+</head>
+<body>
+  <header>
+    <button onclick="decFont()">decrease font size</button>
+    <button onclick="incFont()">increase font size</button>
+  </header>
+  <article>
+  <p>The Real Meaning of Ich Bin ein Berliner</p>
+  <p><div>In West Berlin in 1963, President Kennedy delivered <span>his most eloquent</span> speech <span>on the world stage</span>. </div>
+      <div>The director <span>of the John F. Kennedy Presidential Library and Museum</span> tells the <span>evocative</span> story <span>behind JFK’s words</span>.</div></p>
+  <p><div><span>other than ask not</span>, they were the most-famous words <span>he ever spoke</span>. </div>
+      <div>They drew the <span>world’s</span> attention to <span>what he considered the hottest spot <span>in the Cold War</span></span>. </div>
+      <div><span>Added at the last moment</span> and <span>scribbled in his own hand</span>, they were not, <span>like the oratory <span>in most of his other addresses</span></span>, chosen by <span>talented speechwriters</span>. </div>
+      <div>And for a man <span>notoriously tongue-tied <span>when it came to foreign languages</span></span>, the four words weren't <span>even</span> in English.</div></p>
+  <p><div>Ich bin ein Berliner.</div></p>
+  <p><div>These words, <span><span>delivered on June 26, 1963</span>, against the geopolitical backdrop of the Berlin Wall</span>, endure because of <span>the pairing of the man and the moment</span>. </div>
+              <div>John F. Kennedy’s <span>defiant</span> defense of <span>democracy and self-government</span> stand out as <span>a high point of his presidency</span>.</div></p>
+  <p><div><span>To appreciate their impact</span>, one must understand the history.</div>
+      <div><span>After World WarII</span>, the capital <span>of Hitler’s Third Reich</span> was divided, <span>like Germany itself</span>, between <span>the communist East</span> and <span>the democratic West</span>. </div>
+      <div><span>The Soviet leader</span> Nikita Khrushchev described West Berlin, <span>surrounded on all sides by East Germany</span>, as “<span>a bone in my throat</span>” and vowed to “<span>eradicate this splinter from the heart of Europe</span>.” </div>
+      <div>Kennedy feared <span>that any future European conflict, <span>with the potential for nuclear war</span>, would be sparked by Berlin</span>.</div></p>
+  <p>At their summit meeting in Vienna in the spring of 1961, Khrushchev warned Kennedy that he would sign a treaty with East Germany restricting Western access to West Berlin. 
+      In response, Kennedy announced a major military buildup. 
+      In a television address to the nation on July 25, 1961, he described the embattled city as “the great testing place of Western courage and will” 
+      and declared that any attack on West Berlin would be viewed as an attack on the United States.</p>
+  <p>The speech had its desired effect. 
+      Khrushchev backed down from signing the treaty, even as thousands of East Germans continued crossing into West Berlin in search of freedom. 
+      In the early morning of August 13, 1961, the East German government, with Soviet support, sought to put this problem to rest, by building a wall of barbed wire across the heart of Berlin.</p>
+  <p>Tensions had abated slightly by the time Kennedy arrived for a state visit almost two years later. 
+      But the wall, an aesthetic and moral monstrosity now made mainly of concrete, remained. 
+      Deeply moved by the crowds that had welcomed him in Bonn and Frankfurt, JFK was overwhelmed by the throngs of West Berliners, who put a human face on an issue he had previously seen only in strategic terms. 
+      When he viewed the wall itself, and the barrenness of East Berlin on the other side, his expression turned grim.</p>
+  <p>Kennedy’s speechwriters had worked hard preparing a text for his speech, to be delivered in front of city hall. 
+      They sought to express solidarity with West Berlin’s plight without offending the Soviets, but striking that balance proved impossible. 
+      JFK was disappointed in the draft he was given. 
+      The American commandant in Berlin called the text “terrible,” and the president agreed.</p>
+  </article>
+  <script>
+  var spans = document.getElementsByTagName("span");
+  for ( var i = 0; i < spans.length; i++){
+      spans[i].addEventListener("click", myFunction);
+  }
+
+  var divs = document.getElementsByTagName("div");
+  for ( var i = 0; i < divs.length; i++ ){
+      divs[i].addEventListener("click", myDivFunction);
+//       var rects = divs[i].getClientRects();
+//       var upper = document.createElement("div");
+//       with(upper.style){
+//         position="absolute";
+//         left = rects[0].left +"px";
+//         top = 0+"px";
+//         width = rects[0].width +"px";
+//         height = rects[0].height +"px";
+//         borderTop = "solid";
+//         borderLeft = "solid";
+//         backgroundColor = "green";
+//       }
+//       divs[i].appendChild(upper);
+  }
+
+
+  function myFunction(evt) {
+    if (this.parentElement.nodeName != "SPAN" || 
+      this.parentElement.style.color == "rgb(0, 0, 0)"){
+      this.style.color = "#000000";
+    }
+  }
+
+  function myDivFunction(evt){
+    if(this.hint == undefined){
+      this.hint = true;
+      mySpans = this.getElementsByTagName("span");
+      for( var i =0; i < mySpans.length; i++){
+        with(mySpans[i].style){
+          color = "aliceblue";
+          borderStyle = "solid";
+          borderWidth = "0.05em";
+          borderRadius = "0.5em";
+        }
+      }
+      this.style.border = "solid";
+      this.style.borderColor = "white";
+      return true;
+    }    
+  }
+
+  size = 1;
+
+  function incFont(){
+      size += 0.25;
+      refreshFont();
+  }
+
+  function decFont(){
+    if(size > 1){
+      size -= 0.25;
+    }
+    refreshFont();
+  }
+
+  function refreshFont(){
+    document.getElementsByTagName("BODY")[0].style.fontSize = size + "vw";
+    document.getElementsByTagName("BODY")[0].style.lineHeight = size *2 + "vw";
+  }
+
+  </script>
+
+
+
+</body>
+</html>
