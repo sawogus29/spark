@@ -1,0 +1,186 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>The HTML5 Herald</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+  <style>
+    header {
+      height: 50vh;
+    }
+
+  	body {
+      font-size: 2vw;
+      text-align: justify;
+      line-height: 7vw;
+  	}
+
+    /* The Modal (background) */
+    .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    }
+
+    .modal-content > p {
+        font-size: 2em;
+    }
+
+    /* The Close Button */
+    .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    }
+  </style>
+  <script>
+      partFormats = {
+          "subj":{
+              "color":"Red",
+              "border-color":"Pink"
+          },
+          "verb":{
+              "color":"Yellow",
+              "border-color":"LightYellow"
+          },
+          "obj":{
+              "color":"Green",
+              "border-color":"LightGreen"
+          }
+      }
+  </script>
+
+</head>
+<body>
+  <header>
+  </header>
+  <article>
+  <p>The Real Meaning of Ich Bin ein Berliner</p>
+  <p><span class="sent">In West Berlin in 1963, <span class="subj">President Kennedy</span> <span class="verb">delivered</span> <span class="obj">his most eloquent speech</span> on the world stage. </span>
+      <span class="sent"><span class="subj">The director of the John F. Kennedy Presidential Library and Museum</span> <span class="verb">tells</span> <span class="obj">the evocative story behind JFK’s words</span>.</span></p>
+  <p><span class="sent">other than ask not, <span class="subj">they</span> <span class="verb">were</span> <span class="obj">the most-famous words he ever spoke</span>. </span>
+      <span class="sent"><span class="subj">They</span> <span class="verb">drew</span> <span class="obj">the world’s attention</span> to what he considered the hottest spot in the Cold War. </span>
+      <span class="sent">Added at the last moment and scribbled in his own hand, <span class="subj">they</span> <span class="verb">were not</span>, like the oratory in most of his other addresses, <span class="verb">chosen</span> by talented speechwriters. </span>
+      <span class="sent">And for a man notoriously tongue-tied when it came to foreign languages, <span class="subj">the four words</span> <span class="verb">weren't</span> even in English.</span></p>
+  <p>Ich bin ein Berliner.</p>
+  <p><span class="sent"><span class="subj">These words</span>, delivered on June 26, 1963, against the geopolitical backdrop of the Berlin Wall, <span class="verb">endure</span> because of the pairing of the man and the moment. </span>
+       <span class="sent"><span class="subj">John F. Kennedy’s defiant defense of democracy and self-government</span> <span class="verb">stand out</span> as a high point of his presidency.</span></p>
+  <p><span class="sent">To appreciate their impact, <span class="subj">one</span> <span class="verb">must understand</span> <span class="obj">the history</span>.</span>
+      <span class="sent">After World WarII, <span class="subj">the capital of Hitler’s Third Reich</span> <span class="verb">was divided</span>, like Germany itself, between the communist East and the democratic West. </span>
+      <span class="sent"><span class="subj">The Soviet leader Nikita Khrushchev</span> <span class="verb">described</span> <span class="obj">West Berlin</span>, surrounded on all sides by East Germany, as “a bone in my throat” and vowed to “eradicate this splinter from the heart of Europe.” </span>
+      <span class="sent"><span class="subj">Kennedy</span> <span class="verb">feared</span> <span class="obj">that <span class="subj">any future European conflict</span>, with the potential for nuclear war, <span class="verb">would be sparked</span> by Berlin.</span></span></p>
+  <p>At their summit meeting in Vienna in the spring of 1961, Khrushchev warned Kennedy that he would sign a treaty with East Germany restricting Western access to West Berlin. 
+      In response, Kennedy announced a major military buildup. 
+      In a television address to the nation on July 25, 1961, he described the embattled city as “the great testing place of Western courage and will” 
+      and declared that any attack on West Berlin would be viewed as an attack on the United States.</p>
+  <p>The speech had its desired effect. 
+      Khrushchev backed down from signing the treaty, even as thousands of East Germans continued crossing into West Berlin in search of freedom. 
+      In the early morning of August 13, 1961, the East German government, with Soviet support, sought to put this problem to rest, by building a wall of barbed wire across the heart of Berlin.</p>
+  <p>Tensions had abated slightly by the time Kennedy arrived for a state visit almost two years later. 
+      But the wall, an aesthetic and moral monstrosity now made mainly of concrete, remained. 
+      Deeply moved by the crowds that had welcomed him in Bonn and Frankfurt, JFK was overwhelmed by the throngs of West Berliners, who put a human face on an issue he had previously seen only in strategic terms. 
+      When he viewed the wall itself, and the barrenness of East Berlin on the other side, his expression turned grim.</p>
+  <p>Kennedy’s speechwriters had worked hard preparing a text for his speech, to be delivered in front of city hall. 
+      They sought to express solidarity with West Berlin’s plight without offending the Soviets, but striking that balance proved impossible. 
+      JFK was disappointed in the draft he was given. 
+      The American commandant in Berlin called the text “terrible,” and the president agreed.</p>
+  </article>
+  <!-- The Modal -->
+  <div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p></p>
+    </div>
+  </div>
+  <script>
+    var sents = document.querySelectorAll("p > span.sent");
+    for(var i=0; i < sents.length; i++){
+        sents[i].addEventListener("click", onSentClick);
+    }
+    
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    var spanClose = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on <span> (x), close the modal
+    spanClose.onclick = function() {
+        closeModal();
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            closeModal();
+        }
+    }
+
+    function onSentClick(evt){
+        if ( this.className != "sent"){
+            this.style.backgroundColor = "white";
+            closeModal();
+        }
+
+        modal.style.display = "block";
+        sentClone = this.cloneNode(true);
+        modal.querySelector("p").appendChild(sentClone);
+        
+        for(part in partFormats){
+            parts = sentClone.querySelectorAll(":scope > span."+part);
+            for(var i=0; i<parts.length; i++){
+                parts[i].style.backgroundColor = partFormats[part]["color"];
+                if(parts[i].childElementCount > 0){                    
+                    parts[i].style.border = "solid 5px";
+                    parts[i].style.borderColor = partFormats[part]["border-color"];
+                    parts[i].addEventListener("click", onSentClick);
+                }
+            }
+        }
+        
+        evt.stopPropagation();
+    }
+
+    function closeModal(){
+        modal.style.display = "none";
+        modal.querySelector("p > span").remove();
+    }
+
+  </script>
+
+
+
+</body>
+</html>

@@ -44,10 +44,10 @@
   background:#000;
   	}
 
-  	span::after {
+  	div::after {
   content:"";
   position:absolute;
-  top:50px; /* you many need to update the 1.2em based on your font */
+  top:2.5em; /* you many need to update the 1.2em based on your font */
   right:100%;
   width:100vw;
   height:2px;
@@ -123,6 +123,7 @@
     if (this.parentElement.nodeName != "SPAN" || 
       this.parentElement.style.color == "rgb(0, 0, 0)"){
       this.style.color = "#000000";
+      this.style.borderColor = "#000000";
     }
   }
 
@@ -133,6 +134,7 @@
       for( var i =0; i < mySpans.length; i++){
         with(mySpans[i].style){
           color = "aliceblue";
+          borderColor = "aliceblue";
           borderStyle = "solid";
           borderWidth = "0.05em";
           borderRadius = "0.5em";
