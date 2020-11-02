@@ -111,20 +111,40 @@
   var provider = new firebase.auth.GoogleAuthProvider();
   var userId ="", displayName = "";
   var ref_words;
-  
-  firebase.auth().signInWithPopup(provider).then(function(result) {
-    userId = result.user.uid;
-    displayName = result.user.displayName;
 
-    ref_words = database.ref('users/'+userId+'/words/');
-    readUserData();
-    console.log(result);
-  }).catch(function(error) {
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      var email = error.email;
-      var credential = error.credential;
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      console.log(user);
+    } else {
+      firebase.auth().signInWithPopup(provider).then(function(result) {
+        userId = result.user.uid;
+        displayName = result.user.displayName;
+
+        ref_words = database.ref('users/'+userId+'/words/');
+        readUserData();
+        console.log(result);
+      }).catch(function(error) {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          var email = error.email;
+          var credential = error.credential;
+      });
+    }
   });
+  
+//  firebase.auth().signInWithPopup(provider).then(function(result) {
+//    userId = result.user.uid;
+//    displayName = result.user.displayName;
+//
+//    ref_words = database.ref('users/'+userId+'/words/');
+//    readUserData();
+//    console.log(result);
+//  }).catch(function(error) {
+//      var errorCode = error.code;
+//      var errorMessage = error.message;
+//      var email = error.email;
+//      var credential = error.credential;
+//  });
   //=================================================================
 
   var database = firebase.database();
@@ -183,7 +203,7 @@
   var sents = document.querySelectorAll("p > span.sent");
   var pressTimer;
   for(var i=0; i<sents.length; i++){
-    sents[i].addEventListener("click", onLongPress);
+    sents[i].addEventListener("long-press", onLongPress);
     //sents[i].addEventListener("mousedown",(evt)=>{pressTimer = setTimeout(onLongPress, 1000);});
     //sents[i].addEventListener("mouseup", (evt)=>{clearTimeout(pressTimer);});
   }
