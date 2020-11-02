@@ -207,7 +207,7 @@
   var sents = document.querySelectorAll("p > span.sent");
   var pressTimer;
   for(var i=0; i<sents.length; i++){
-    sents[i].addEventListener("long-press", onLongPress);
+    sents[i].addEventListener("click", onLongPress);
     //sents[i].addEventListener("mousedown",(evt)=>{pressTimer = setTimeout(onLongPress, 1000);});
     //sents[i].addEventListener("mouseup", (evt)=>{clearTimeout(pressTimer);});
   }

@@ -18,11 +18,11 @@
       line-height: 7vw;
   	}
 
-    /* article {
+    article {
       -webkit-user-select: none; 
       -ms-user-select: none;
       user-select: none;
-    } */
+    }
 
     #words-container {
       margin-top: 10vw;
@@ -197,11 +197,11 @@
 
   function onLongPress(evt){
     console.log(evt);
+
+    target = evt.target;
+    
     var str = window.getSelection().focusNode.data;
     var offset = window.getSelection().anchorOffset;
-
-    // disable user selection
-    evt.target.style.userSelect="none";
 
     var tokens = str.match(/\w*/g);
     
@@ -225,9 +225,6 @@
     sent = evt.target.closest(".sent").innerText;
     offset += sent.search(str) + document.querySelector("article").innerText.search(sent);
     writeUserData(userId, word.toLowerCase(), word+'_meaning', sent, offset);
-    
-    //enable user selection
-    evt.target.style.userSelect="auto";
   }
 
   </script>
