@@ -183,9 +183,9 @@
   var pressTimer;
   for(var i=0; i<sents.length; i++){
     //sents[i].addEventListener("long-press", onLongPress);
-    sents[i].addEventListener("mousedown", (evt)=>{pressTimer = window.setTimeout(() => onLongPress(evt), 1000);return false;});
+    sents[i].addEventListener("mousedown", (evt)=>{pressTimer = window.setTimeout(() => onLongPress(evt), 1000);evt.stopPropagation();return false;});
     sents[i].addEventListener("mouseup", (evt)=>{clearTimeout(pressTimer);return false;});
-    sents[i].addEventListener("touchstart", (evt)=>{pressTimer = window.setTimeout(() => onLongPress(evt), 1000);return false;});
+    sents[i].addEventListener("touchstart", (evt)=>{pressTimer = window.setTimeout(() => onLongPress(evt), 1000);evt.stopPropagation();false;});
     sents[i].addEventListener("touchend", (evt)=>{clearTimeout(pressTimer);return false;});
   }
 
