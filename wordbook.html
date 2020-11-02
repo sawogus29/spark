@@ -110,10 +110,13 @@
   // Auth
   var provider = new firebase.auth.GoogleAuthProvider();
   var userId ="", displayName = "";
+  var ref_words;
+  
   firebase.auth().signInWithPopup(provider).then(function(result) {
     userId = result.user.uid;
     displayName = result.user.displayName;
 
+    ref_words = database.ref('users/'+userId+'/words/');
     console.log(result);
   }).catch(function(error) {
       var errorCode = error.code;
@@ -124,7 +127,6 @@
   //=================================================================
 
   var database = firebase.database();
-  var ref_words = database.ref('users/'+userId+'/words/');
 
   // Write to Firebase
   function writeUserData(userId, word, meaning, sent, offset) {
