@@ -13,13 +13,46 @@
     }
 
   	body {
-      font-size: 2vw;
+      font-size: 4vw;
       text-align: justify;
       line-height: 7vw;
   	}
 
+    #words-container {
+      margin-top: 10vw;
+    }
+
     div.word-unit {
-      border: solid black;
+      margin: 10px 0px;
+      padding: 5px 10px;
+      border-radius: 5px;
+      box-shadow: 0px 0px 5px grey;
+    }
+    
+    div.word-unit .word-wrapper {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+    }
+    
+    div.word-unit .meaning{
+      flex: 1;
+      text-align: right;
+    }
+    
+    div.word-unit .sents-container {
+      background-color: #eeeeee;
+      margin: 5px 0px;
+      padding: 0px 5px;
+      font-size: 3vw;
+    }
+    
+    div.word-unit .offset {
+      float: right;
+    }
+
+    div.sent-unit p {
+      margin: 0px;
     }
   </style>
 
@@ -38,12 +71,13 @@
   </article>
   <div id="words-container">
     <div class="word-unit" id="word-templete">
-      <div class="word">example</div><div class="meaning">예시</div>
+      <div class="word-wrapper">
+        <div class="word">example</div><div class="meaning">예시</div>
+      </div>
       <div class="sents-container">
         <div class="sent-unit"><p class="sent">This is a example string.</p>[offset]:<span class="offset">100</span></div> 
       </div>
     </div>
-
   </div>
   <script src="lib/long-press-event.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
