@@ -22,6 +22,10 @@
       margin-top: 10vw;
     }
 
+    #word-templete {
+      display: none;
+    }
+
     div.word-unit {
       margin: 10px 0px;
       padding: 5px 10px;
@@ -79,12 +83,13 @@
       </div>
     </div>
   </div>
+
   <script src="lib/long-press-event.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
-
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
   <script>
   // Your web app's Firebase configuration
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -102,41 +107,48 @@
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
 
+  // Auth
+  var provider = new firebase.auth.GoogleAuthProvider();
+
+  firebase.auth().signInWithPopup(provider).then(function(result) {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    var token = result.credential.accessToken;
+    // The signed-in user info.
+    var user = result.user;
+
+    conslole.log(result);
+  }).catch(function(error) {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      var email = error.email;
+      var credential = error.credential;
+  });
   //=================================================================
 
   var database = firebase.database();
   const userId = "jaehyeon";
 
   var ref_words = database.ref('users/'+userId+'/words/');
+
+  // Write to Firebase
   function writeUserData(userId, word, meaning, sent, offset) {
     ref_words.child(word).set({
       word: word,
       meaning: meaning,
       sents: [{sent:sent, offset:offset}],
+      time: firebase.firestore.Timestamp.now().seconds
     });
+    console.log(word);
   }
 
-  // ref_words.once('value', function(snapshot){
-  //   var ss_val = snapshot.val();
-
-  //   for(key in ss_val){
-  //     var ss_word = ss_val[key];
-  //     with(ss_word){
-  //       appendWord(word, meaning, sents);
-  //     }
-  //   }
-  //   console.log(ss_val);
-  // });
-
-  ref_words.on('child_added', function(snapshot){
+  // Read From Firebase
+  ref_words.orderByChild('time').on('child_added', function(snapshot){
     var child_val = snapshot.val();
     with(child_val){
       appendWord(word, meaning, sents);
     }
     console.log(child_val);
   });
-
-  
 
   function appendWord(word, meaning, sents){
     function appendSent(sent, offset, container){
@@ -148,6 +160,7 @@
     
     words_container = document.querySelector("#words-container");
     temp = words_container.querySelector("#word-templete").cloneNode(true);
+    temp.style.display = "static";
     temp.id = "";
     with(temp){
       querySelector(".word").innerText = word;
@@ -158,9 +171,10 @@
       }
       sents_container.removeChild(sents_container.firstElementChild)
     }
-    words_container.appendChild(temp);
+    words_container.prepend(temp);
   }
 
+  //=================================================================
   var sents = document.querySelectorAll("p > span.sent");
   var pressTimer;
   for(var i=0; i<sents.length; i++){
