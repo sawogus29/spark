@@ -115,12 +115,12 @@
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       // already signed-in
-      initUserDataOnAuth();
+      initUserDataOnAuth(user);
       console.log(user);
     } else {
       // show sign-in popup
       firebase.auth().signInWithPopup(provider).then(function(result) {
-        initUserDataOnAuth();
+        initUserDataOnAuth(result.user);
         console.log(result);
       }).catch(function(error) {
         console.log(error);
@@ -130,8 +130,8 @@
   });
 
   function initUserDataOnAuth(){
-    userId = result.user.uid;
-    displayName = result.user.displayName;
+    userId = user.uid;
+    displayName = user.displayName;
     ref_words = database.ref('users/'+userId+'/words/');
     readUserData();
   }
