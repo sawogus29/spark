@@ -114,23 +114,27 @@
 
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
+      // already signed-in
+      initUserDataOnAuth();
       console.log(user);
     } else {
+      // show sign-in popup
       firebase.auth().signInWithPopup(provider).then(function(result) {
-        userId = result.user.uid;
-        displayName = result.user.displayName;
-
-        ref_words = database.ref('users/'+userId+'/words/');
-        readUserData();
+        initUserDataOnAuth();
         console.log(result);
       }).catch(function(error) {
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          var email = error.email;
-          var credential = error.credential;
+        console.log(error);
+        alert("Failed To Login");
       });
     }
   });
+
+  function initUserDataOnAuth(){
+    userId = result.user.uid;
+    displayName = result.user.displayName;
+    ref_words = database.ref('users/'+userId+'/words/');
+    readUserData();
+  }
   
 //  firebase.auth().signInWithPopup(provider).then(function(result) {
 //    userId = result.user.uid;
