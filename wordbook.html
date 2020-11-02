@@ -129,7 +129,7 @@
     }
   });
 
-  function initUserDataOnAuth(){
+  function initUserDataOnAuth(user){
     userId = user.uid;
     displayName = user.displayName;
     ref_words = database.ref('users/'+userId+'/words/');
