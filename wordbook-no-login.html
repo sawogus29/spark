@@ -3,14 +3,11 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>The HTML5 Herald</title>
   <meta name="description" content="The HTML5 Herald">
   <meta name="author" content="SitePoint">
   <style>
-    header {
-      height: 50vh;
-    }
 
   	body {
       font-size: 4vw;
@@ -44,10 +41,18 @@
       flex-direction: row;
       align-items: stretch;
     }
+
+    div.word {
+      flex:1;
+      vertical-align: middle;
+      textalign
+    }
     
     div.word-unit .meaning{
-      flex: 1;
-      text-align: right;
+      margin-left: 10vw;
+      font-size:small;
+      line-height: 120%;
+      vertical-align: middle;
     }
     
     div.word-unit .sents-container {
@@ -63,15 +68,114 @@
 
     div.sent-unit p {
       margin: 0px;
+      line-height: 150%;
+    }
+    
+    article.fun-reader {
+      z-index:1;
+      display:none;
+    }
+
+    #title {
+      display: block;
+      margin: 20vh 5vw;
+      align-self: center;
+      text-align: center;
+      font-size: 8vw;
+    }
+
+    #instruct {
+      position: relative;
+      /* bottom:0; */
+      margin-right: 20vw;
+      border: 1px solid white;
+      border-radius: 2vw;
+      box-shadow: 0px 0px 5px grey;
+      background-color: white;
+      /* background-color: red; */
+      z-index:2 !important;
+    }
+    
+    #arrow {
+      /* position: relative; */
+      margin-left: 5vw;
+      margin-top: -7vw;
+      width: 9vw;
+      height: 9vw;
+      transform: rotate(45deg);
+      background-color: white;
+      box-shadow: 0px 0px 5px grey;
+      z-index:1 !important;
+
+    }
+
+    /* The Modal (background) */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 10; /* Sit on top */
+      padding-top: 100px; /* Location of the box */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content {
+      position: absolute;
+      background-color: #fefefe;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 50%;
+      border-radius: 2vw;
+      box-shadow: 0px 0px 5px grey;
+    }
+    
+    .modal-content > .dict-word{
+      font-size: 0.8em;
+      font-weight: bold;
+      border-bottom: 1px solid black;
+    }
+    
+    .modal-content > .dict-meaning{
+      font-size: 0.5em;
     }
   </style>
+  <script>
+    partFormats = {
+      "subj":{
+          "color":"Red",
+          "border-color":"Pink"
+      },
+      "verb":{
+          "color":"Yellow",
+          "border-color":"LightYellow"
+      },
+      "obj":{
+          "color":"Green",
+          "border-color":"LightGreen"
+      }
+    }
+  </script>
 
 </head>
 <body>
   <header>
+    <p id="title">The Real Meaning of Ich Bin ein Berliner</p>
+    <div id="instruct"><ol>
+      <li>Tap a word for dictionary</li>
+      <li>Double Tap a sentence for hint</li>
+    </ol>
+    </div>
+    <div id="arrow"></div>
   </header>
-  <article>
-  <p>The Real Meaning of Ich Bin ein Berliner</p>
+  <div id="article-wrapper">
+  <article class="color-reader">
   <p><span class="sent">In West Berlin in 1963, <span class="subj">President Kennedy</span> <span class="verb">delivered</span> <span class="obj">his most eloquent speech</span> on the world stage. </span>
       <span class="sent"><span class="subj">The director of the John F. Kennedy Presidential Library and Museum</span> <span class="verb">tells</span> <span class="obj">the evocative story behind JFK’s words</span>.</span></p>
   <p><span class="sent">other than ask not, <span class="subj">they</span> <span class="verb">were</span> <span class="obj">the most-famous words he ever spoke</span>. </span>
@@ -79,18 +183,41 @@
       <span class="sent">Added at the last moment and scribbled in his own hand, <span class="subj">they</span> <span class="verb">were not</span>, like the oratory in most of his other addresses, <span class="verb">chosen</span> by talented speechwriters. </span>
       <span class="sent">And for a man notoriously tongue-tied when it came to foreign languages, <span class="subj">the four words</span> <span class="verb">weren't</span> even in English.</span></p>
   </article>
+  <article class="fun-reader">
+    <p><span class="sent">In West Berlin in 1963, President Kennedy delivered <span class="mod">his most eloquent</span> speech <span class="mod">on the world stage</span>.</span> 
+      <span class="sent">The director <span class="mod">of the John F. Kennedy Presidential Library and Museum</span> tells the <span class="mod">evocative</span> story <span class="mod">behind JFK’s words</span>.<span class="sent"></p>
+    <p><span class="sent"><span class="mod">other than ask not</span>, they were the most-famous words <span class="mod">he ever spoke</span>.</span> 
+      <span class="sent">They drew the <span class="mod">world’s</span> attention to <span class="mod">what he considered the hottest spot <span class="mod">in the Cold War</span></span>.</span> 
+      <span class="sent"><span class="mod">Added at the last moment</span> and <span class="mod">scribbled in his own hand</span>, they were not, <span class="mod">like the oratory <span class="mod">in most of his other addresses</span></span>, chosen by <span class="mod">talented speechwriters</span>.</span> 
+      <span class="sent">And for a man <span class="mod">notoriously tongue-tied <span class="mod">when it came to foreign languages</span></span>, the four words weren't <span class="mod">even</span> in English.</span></p>
+    <p><span class="sent">Ich bin ein Berliner.</span></p>
+    <p><span class="sent">These words, <span class="mod"><span class="mod">delivered on June 26, 1963</span>, against the geopolitical backdrop of the Berlin Wall</span>, endure because of <span class="mod">the pairing of the man and the moment</span>.</span> 
+     <span class="sent">John F. Kennedy’s <span class="mod">defiant</span> defense of <span class="mod">democracy and self-government</span> stand out as <span class="mod">a high point of his presidency.</span></span></p>
+    <p><span class="sent"><span class="mod">To appreciate their impact</span>, one must understand the history.</span>
+      <span class="sent"><span class="mod">After World WarII</span>, the capital <span class="mod">of Hitler’s Third Reich</span> was divided, <span class="mod">like Germany itself</span>, between <span class="mod">the communist East</span> and <span class="mod">the democratic West</span>.</span> 
+      <span class="sent"><span class="mod">The Soviet leader</span> Nikita Khrushchev described West Berlin, <span class="mod">surrounded on all sides by East Germany</span>, as “<span class="mod">a bone in my throat</span>” and vowed to “<span class="mod">eradicate this splinter from the heart of Europe</span>.”</span> 
+      <span class="sent">Kennedy feared <span class="mod">that any future European conflict, <span class="mod">with the potential for nuclear war</span>, would be sparked by Berlin</span>.</span></p>
+  </article>
+ <div id="dict-modal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="dict-word">word</div>
+      <div class="dict-meaning">meaning</div>
+    </div>
+  </div>
+  </div>
   <div id="words-container">
     <div class="word-unit" id="word-templete">
       <div class="word-wrapper">
         <div class="word">example</div><div class="meaning">예시</div>
       </div>
       <div class="sents-container">
-        <div class="sent-unit"><p class="sent">This is a example string.</p>[offset]:<span class="offset">100</span></div> 
+        <div class="sent-unit"><p class="sent">This is a example string.</p>[offset]<span class="offset">100</span></div> 
       </div>
     </div>
   </div>
 
-  <script src="lib/long-press-event.min.js"></script>
+  <script src="./lib/doubleTap.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
@@ -163,6 +290,8 @@
   function appendWord(word, meaning, sents){
     function appendSent(sent, offset, container){
       newSent = container.firstElementChild.cloneNode(true);
+      // var re = new RegExp(word, "gi");
+      // sent.replace(re, "<s></s>");
       newSent.querySelector(".sent").innerText = sent;
       newSent.querySelector(".offset").innerText = offset;
       container.appendChild(newSent);
@@ -186,47 +315,218 @@
 
   //=================================================================
   var sents = document.querySelectorAll("p > span.sent");
-  var pressTimer;
-  for(var i=0; i<sents.length; i++){
-    //sents[i].addEventListener("long-press", onLongPress);
-    sents[i].addEventListener("mousedown", (evt)=>{pressTimer = window.setTimeout(() => onLongPress(evt), 500);evt.stopPropagation();return false;});
-    sents[i].addEventListener("mouseup", (evt)=>{clearTimeout(pressTimer);return false;});
-    sents[i].addEventListener("touchstart", (evt)=>{pressTimer = window.setTimeout(() => onLongPress(evt), 500);evt.stopPropagation();false;});
-    sents[i].addEventListener("touchend", (evt)=>{clearTimeout(pressTimer);return false;});
+
+  for(sent of sents){
+    splitElem2Words(sent);
   }
 
-  function onLongPress(evt){
-    console.log(evt);
+  console.log("....word tokenize end.......")
 
-    target = evt.target;
-    
-    var str = window.getSelection().focusNode.data;
-    var offset = window.getSelection().anchorOffset;
-
-    var tokens = str.match(/\w*/g);
-    
-    var consumed = 0;
-    var word = "";
-    for(var i=0; i<tokens.length; i++){
-      var prev_consumed = consumed;
-      consumed += tokens[i].length > 0? tokens[i].length : 1;
-      if(consumed > offset){
-        offset = prev_consumed;
-        word = tokens[i];
-        break;
+  function splitElem2Words(elem){
+    var childs = elem.childNodes;
+    var newElem = elem.cloneNode(false);
+    var len = childs.length;
+    for(var i=0; i<len; i++){
+      var c = childs[i].cloneNode(true);
+      newElem.appendChild(c);
+      switch(c.nodeType){
+        case 3: // Bound Case : textNode(3)
+          splitTextNode2Words(c);
+          break;
+        case 1: // Recursive : Element
+          splitElem2Words(c);
+          break;
+        default:
+          console.log(c);
+          break;
       }
     }
-
-    if(word.length == 0){
-      console.error(word);
-      return false;
-    }
     
-    sent = evt.target.closest(".sent").innerText;
-    offset += sent.search(str) + document.querySelector("article").innerText.search(sent);
-    writeUserData(userId, word.toLowerCase(), word+'_meaning', sent, offset);
+    elem.replaceWith(newElem);
   }
 
+  function splitTextNode2Words(textNode){
+    const re = /\w*/g
+    
+    console.log(textNode.wholeText);
+    while(textNode != undefined && textNode.wholeText.length > 0){
+      var matchs = textNode.wholeText.match(re);
+      var start_offset = 0;
+      var word_length = 0;
+
+      for(m of matchs){
+        if(m.length == 0){ start_offset++; continue;}
+
+        word_length = m.length;
+        break;
+      }
+      
+      if(start_offset > 0){
+        // Last non-word
+        if(start_offset >= textNode.length){break;}
+        textNode = textNode.splitText(start_offset);
+      }
+
+      // Not Last Word
+      if(word_length < textNode.wholeText.length){
+        var nextNode = textNode.splitText(word_length);
+      }
+      var wordNode = document.createElement("span");
+      wordNode.classList.add("word");
+      wordNode.appendChild(textNode.cloneNode());
+      textNode.replaceWith(wordNode);
+
+      textNode = nextNode;
+    }
+  }
+
+  sents = document.querySelectorAll("article > p > span.sent");
+  for(let sent of sents){
+    sent.addEventListener("touchstart", onTouchStart);
+    sent.addEventListener("touchend", onTouchEnd);
+  }
+
+  var touch_timeout;
+  var isFirstTap = true;
+  function onTouchStart(evt){
+    window.clearTimeout(touch_timeout);
+  }
+
+  function onTouchEnd(evt){
+    if(isFirstTap){
+      touch_timeout = window.setTimeout(function(){
+        onClick(evt);
+        isFirstTap = true;
+      }, 500);
+      isFirstTap = false;
+    }else{
+      onDblClick(evt);
+      isFirstTap = true;
+    }
+  }
+
+  function changeSpanColor(target){
+    let queryString = "";
+    for(var part in partFormats){ queryString +=", :scope > span."+part; }
+    queryString = queryString.substring(1);
+
+    for(var part in partFormats){
+      var parts = target.querySelectorAll(":scope > span."+part); 
+      for(var i=0; i<parts.length; i++){
+        parts[i].style.backgroundColor = partFormats[part]["color"];
+
+        var part_childs = parts[i].querySelectorAll(queryString);
+        if(part_childs.length >0){
+          parts[i].style.border = "solid 5px";
+          parts[i].style.borderColor = partFormats[part]["border-color"];
+          // parts[i].addEventListener("click", onSentClick);
+        }
+      } 
+    }
+  }
+    
+  function onDblClick(evt){
+    if(evt.currentTarget.className != "sent"){
+        evt.currentTarget.style.backgroundColor="white";
+    }
+    
+    changeSpanColor(evt.currentTarget);
+
+    evt.stopPropagation();
+  }
+
+  var httpRequest;
+  function onClick(evt){
+    // word event delegation
+    if(evt.target.className == "word"){
+      // var sent = evt.currentTarget.innerText;
+      var sent = evt.target.closest(".sent").innerText;
+      var word = evt.target.innerText;
+      
+      // send dictionary request
+      httpRequest = new XMLHttpRequest();
+      httpRequest.onreadystatechange = function(){
+        if (httpRequest.readyState === XMLHttpRequest.DONE){
+          if (httpRequest.status == 200){
+            // alert(httpRequest.responseText);
+            const json = JSON.parse(httpRequest.responseText);
+            var orign_word = "";
+            var meaning = "";
+
+            // word not found
+            if (json.title != undefined){ showDictModal(null, "...no meaning");return; }
+
+            // https://api.dictionaryapi.dev/api/v2/entries/en/bear
+            // homophone: 0:doing 1:Animal
+            // meanings : 0:Noun  1:Verb
+            // defintions: 0:carry weight 1:endure
+            for( hmp of json ) { 
+              orign_word = hmp.word;
+              meaning += hmp.meanings[0].definitions[0].definition + "\n";
+            }
+            meaning = meaning.trim();
+            
+            showDictModal(orign_word, meaning);
+            writeUserData(userId, orign_word, meaning, sent, 100);
+          }else{
+            showDictModal(null,"dictionary request failed..." );
+            // alert("dictionary request failed...");
+          }
+        }
+      }
+      httpRequest.open('GET', 'https://api.dictionaryapi.dev/api/v2/entries/en/'+word, true)
+      httpRequest.send(null);
+      with(evt.target.getClientRects()[0]){
+      showDictModal(word, "...searching",left, top);
+      }
+    }
+  }
+
+  // Get the modal
+  var modal = document.querySelector("#dict-modal");
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+      if (event.target == modal) {
+          closeModal();
+      }
+  }
+
+  function showDictModal(word, meaning, left, bottom){
+      modal.style.display = "block";
+      if(left != undefined){
+        var mc = modal.querySelector(".modal-content");
+        var modal_rect = modal.getBoundingClientRect();
+        var mc_rect = mc.getBoundingClientRect();
+        mc.style.left= ((left + mc_rect.width > modal_rect.width)?modal_rect.width-mc_rect.width:left) +"px";
+        // if(left + mc_rect.width > modal_rect.width){
+        //   mc.style.left = modal_rect.width-mc_rect.width +"px"; 
+        // }
+        // else{ 
+        //   mc.style.left= left +"px"; 
+        // }
+      }
+      if(bottom != undefined){
+        // CAUTION: bottom=0 means bottom of screen
+        const marginBottom = 1 * (document.documentElement.clientWidth / 100); // vw2px
+        var mc = modal.querySelector(".modal-content");
+        // word-top 2 bottom
+        var modal_rect = modal.getBoundingClientRect();
+        bottom = modal_rect.height - bottom;
+        var mc_rect = mc.getBoundingClientRect();
+        if(bottom + mc_rect.height + marginBottom > modal_rect.height){
+          mc.style.top = 0 +"px";
+        } else{
+          mc.style.bottom= (bottom + marginBottom) +"px";
+        }
+      }
+      if(word != null){ modal.querySelector(".dict-word").innerText = word; }
+      if(meaning != null) { modal.querySelector(".dict-meaning").innerText = meaning; }
+  }
+
+  function closeModal(){
+      modal.style.display = "none";
+  }
   </script>
 </body>
 </html>
