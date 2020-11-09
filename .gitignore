@@ -1,2 +1,4 @@
 .vscode/
 *.log
+tools/*.txt
+tools/*.html
