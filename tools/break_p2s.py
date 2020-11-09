@@ -14,6 +14,6 @@ with open(sys.argv[1], 'r', encoding='UTF-8') as fr, open(sys.argv[1] + "_sent.h
         for sent in sents:
             fw.write("<span class=\"sent\">")
             fw.write(sent)
-            fw.write("</sapn>\n")
+            fw.write("</span>\n")
         fw.write("</p>\n")
 
