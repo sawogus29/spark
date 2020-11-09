@@ -29,9 +29,11 @@
           padding: 0em 0.2em;
       }
     
-    p::after{
+    span.sent::after{
+      display:inline-block;
       content:"|";
-      background-color: red;
+      background-color: gray;
+      transform: skewX(-30deg);
     }
 
 
@@ -41,10 +43,9 @@
 <body>
   <header>
   	*아래 빈칸을 눌러가면서 읽어주세요 *
+<p>Faster and More Dangerous</p>
   </header>
   <article>
-<p><span class="sent">Faster and More Dangerous</span>
-</p>
 <p><span class="sent">The pandemic has put global trends <span class="mod">into hyperdrive</span>.</span>
 <span class="sent">We need to adapt.</span>
 </p>
