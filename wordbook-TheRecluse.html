@@ -201,7 +201,7 @@
       display:block;
       width: 60vw;
       padding: 1vw 3vw;
-      
+      margin-bottom: 3vw;
       border-radius: 1vw;
       background-color: lightblue;
       box-shadow: 0px 0px 5px grey;
@@ -694,15 +694,26 @@
   for(let sent of sents){
     sent.addEventListener("touchstart", onTouchStart);
     sent.addEventListener("touchend", onTouchEnd);
+    sent.addEventListener("touchmove", onTouchMove);
   }
 
   var touch_timeout;
   var isFirstTap = true;
+  var isMoved = false;
   function onTouchStart(evt){
     window.clearTimeout(touch_timeout);
+    console.log("onTouchStart");
+  }
+
+  function onTouchMove(evt){
+    window.clearTimeout(touch_timeout);
+    isMoved = true;
+    console.log("onTouchMove");
   }
 
   function onTouchEnd(evt){
+    if(isMoved){isMoved=false; isFirstTap=true; return;}
+
     if(isFirstTap){
       touch_timeout = window.setTimeout(function(){
         onClick(evt);
@@ -713,6 +724,7 @@
       onDblClick(evt);
       isFirstTap = true;
     }
+    console.log("onTouchEnd");
   }
 
   function changeSpanColor(target){
@@ -863,6 +875,7 @@
   document.querySelector("#menu-btn").addEventListener('click', function(evt){
     if(evt.currentTarget.dataset.on){delete evt.currentTarget.dataset.on;}
     else{evt.currentTarget.dataset.on=1;}
+    evt.stopPropagation();
   })
 
 
