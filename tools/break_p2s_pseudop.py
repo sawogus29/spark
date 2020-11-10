@@ -1,6 +1,9 @@
 import nltk
+import textstat
 import sys
 # nltk.download('punkt')
+
+list_score = list()
 
 with open(sys.argv[1], 'r', encoding='UTF-8') as fr, open(sys.argv[1] + "_sent.html", 'w', encoding='UTF-8') as fw:
     while True:
@@ -13,9 +16,17 @@ with open(sys.argv[1], 'r', encoding='UTF-8') as fr, open(sys.argv[1] + "_sent.h
         fw.write("<p>")
         fw.write("<span class=\"pp\">\n")
         for sent in sents:
-            fw.write("<span class=\"sent\">")
+            dc_score = textstat.flesch_kincaid_grade(sent)
+            list_score.append(dc_score)
+            if dc_score < 4:
+                dc_score = 3
+            elif dc_score < 8:
+                dc_score = 2
+            else:
+                dc_score = 1
+            print(sent + "\nscore:" + str(dc_score))
+            fw.write("<span class=\"sent\" data-dif = \"" + str(dc_score) + "\">")
             fw.write(sent)
             fw.write("</span>\n")
         fw.write("</span>")
         fw.write("</p>\n")
-

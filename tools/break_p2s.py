@@ -24,7 +24,7 @@ with open(sys.argv[1], 'r', encoding='UTF-8') as fr, open(sys.argv[1] + "_sent.h
             else:
                 dc_score = 1
             print(sent + "\nscore:" + str(dc_score))
-            fw.write("<span class=\"sent\", data-dif = \"" + str(dc_score) + "\">")
+            fw.write("<span class=\"sent\" data-dif = \"" + str(dc_score) + "\">")
             fw.write(sent)
             fw.write("</span>\n")
         fw.write("</p>\n")
