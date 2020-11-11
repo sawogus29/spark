@@ -606,6 +606,7 @@
   while(userId==""){
     userId = prompt("ID를 입력해주세요", "");
   }
+  userId+="-RM";
 
   ref_words = database.ref('users/'+userId+'/words/');
   readUserData();

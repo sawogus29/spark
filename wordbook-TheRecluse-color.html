@@ -148,6 +148,7 @@
       content:"/";
       font-weight:bolder;
       font-size:1.5em;
+      line-height:5vw;
       color:grey;
     }
     
@@ -571,6 +572,7 @@
   while(userId==""){
     userId = prompt("ID를 입력해주세요", "");
   }
+  userId+="-RC";
 
   ref_words = database.ref('users/'+userId+'/words/');
   readUserData();
