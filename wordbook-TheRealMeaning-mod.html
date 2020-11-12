@@ -299,10 +299,14 @@
       color: aliceblue;
       border-color: aliceblue;
     }
+
+/*    .sent[data-mod] > * .mod{
+      border: hidden;
+    }*/
     
     .sent[data-mod] .mod[data-mod]{
       color: black;
-      border-color: black;
+      border: 1px solid black;
     }
 
     
@@ -744,11 +748,11 @@
   var modal = document.querySelector("#dict-modal");
 
   // When the user clicks anywhere outside of the modal, close it
-  window.onclick = function(event) {
+  modal.addEventListener('click', function(event) {
       if (event.target == modal) {
           closeModal();
       }
-  }
+  });
 
   function showDictModal(word, meaning, left, bottom){
       modal.style.display = "block";
