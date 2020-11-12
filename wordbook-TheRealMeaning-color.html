@@ -795,10 +795,8 @@
     evt.stopPropagation();
   })
 
-
-
-
-
+  // prevent iphone double tap zoom
+  document.querySelector("body").addEventListener('click', (evt)=>{console.log('body clicked');});
 
   </script>
 </body>
