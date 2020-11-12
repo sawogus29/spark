@@ -886,10 +886,7 @@
     evt.stopPropagation();
   })
 
-  document.querySelector(".body").addEventListener('dblclick',(evt)=>{alert("catch");evt.preventDefault();evt.stopPropagation();}, true);
-
-
-
+  document.querySelector("body").addEventListener('click', (evt)=>{console.log('body clicked');});
 
   </script>
 </body>
