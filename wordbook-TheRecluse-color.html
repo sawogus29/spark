@@ -801,13 +801,13 @@
   var modal = document.querySelector("#dict-modal");
 
   // When the user clicks anywhere outside of the modal, close it
-  window.onclick = function(event) {
+  modal.addEventListener('click', function(event) {
       alert("click!");
       if (event.target == modal) {
           closeModal();
       }
-  }
-
+  });
+  
   function showDictModal(word, meaning, left, bottom){
       modal.style.display = "block";
       if(word != null){ modal.querySelector(".dict-word").innerText = word; }
