@@ -7,6 +7,12 @@
   <meta name="description" content="The HTML5 Herald">
   <meta name="author" content="SitePoint">
   <style>
+    :root {
+      --font: 'Times New Roman';
+      --font-size: 13pt;
+      --line-height: 2;
+    }
+
     body {
       touch-action: manipulation;
     }
@@ -15,9 +21,10 @@
       -webkit-user-select: none; 
       -ms-user-select: none;
       user-select: none;
-      font-size: 5vw;
       text-align: justify;
-      line-height: 200%;
+      font-family: var(--font);
+      font-size: var(--font-size);
+      line-height: var(--line-height);
       text-indent: 0.5em;
     }
 
@@ -81,6 +88,7 @@
       align-self: center;
       text-align: center;
       font-size: 8vw;
+      font-family: var(--font);
     }
 
     #instruct {
@@ -92,11 +100,11 @@
       box-shadow: 0px 0px 5px grey;
       background-color: white;
       /* background-color: red; */
-      z-index:2 !important;
+      z-index:0;
     }
     
     #arrow {
-      /* position: relative; */
+      position: relative;
       margin-left: 5vw;
       margin-top: -7vw;
       width: 9vw;
@@ -104,7 +112,7 @@
       transform: rotate(45deg);
       background-color: white;
       box-shadow: 0px 0px 5px grey;
-      z-index:1 !important;
+      z-index:-100;
 
     }
 
@@ -283,20 +291,19 @@
 
     /*********** Sentence Color **************/
     
-    .sent[data-color] > span.subj{
+    .color-reader[data-chk-subj] .sent[data-color] > span.subj, .lb_subj{
       background-color: pink;
     }
-    .sent[data-color] > span.verb{
+    .color-reader[data-chk-verb] .sent[data-color] > span.verb, .lb_verb{
       background-color: yellow;
     }
-    .sent[data-color] > span.obj{
+    .color-reader[data-chk-obj] .sent[data-color] > span.obj, .lb_obj{
       background-color: lightgreen;
     }
-    .sent[data-color] > span.comp{
-      background-color: lightblue;
+    .color-reader[data-chk-comp] .sent[data-color] > span.comp, .lb_comp{
+      background-color: lightskyblue;
     }
-
-    .sent[data-color] > span.aux{
+    .color-reader[data-chk-aux] .sent[data-color] > span.aux, .lb_aux{
       color: #555555;
       border-radius:1em;
       padding-left:1px;
@@ -312,17 +319,17 @@
       content:"}";
     } */
     
-    .sent[data-color] .aux .subj{
+    .color-reader[data-chk-aux][data-chk-subj] .sent[data-color] .aux .subj{
       color:black;
       text-shadow: 0 0 3px pink;
     }
-    .sent[data-color] .aux .verb{
+    .color-reader[data-chk-aux][data-chk-verb] .sent[data-color] .aux .verb{
       text-shadow: 0 0 3px yellow;
     }
-    .sent[data-color] .aux .obj{
+    .color-reader[data-chk-aux][data-chk-obj] .sent[data-color] .aux .obj{
       text-shadow: 0 0 3px lightgreen;
     }
-    .sent[data-color] .aux .obj{
+    .color-reader[data-chk-aux][data-chk-comp] .sent[data-color] .aux .comp{
       text-shadow: 0 0 3px lightblue;
     }
 
@@ -515,10 +522,40 @@
   <div id="setting-wrapper">
     <div id="menu-btn"><div></div> <div></div> <div></div></div>
     <div id="setting-elems">
-      <div id="sent-setting" class="setting-elem">
+      <div id="font-setting" class="setting-elem">
+        <div class="setting-title">Font</div>
+        <select name="font" id="font" value="Times New Roman">
+          <option value="Georgia" style="font-family:Georgia">Georgia</option>
+          <option value="Palatino Linotype" style="font-family:Palatino Linotype">Palatino Linotype</option>
+          <option value="Book Antiqua" style="font-family:Book Antiqua">Book Antiqua</option>
+          <option selected value="Times New Roman" style="font-family:Times New Roman">Times New Roman</option>
+          <option value="Arial" style="font-family:Arial">Arial</option>
+          <option value="Helvetica" style="font-family:Helvetica">Helvetica</option>
+          <option value="Lucida Sans" style="font-family:Lucida Sans">Lucida Sans</option>
+          <option value="Tahoma" style="font-family:Tohoma">Tohoma</option>
+          <option value="Verdana" style="font-family:Verdana">Verdana</option>
+          <option value="Courier New" style="font-family:Courier New">Courier New</option>
+          <option value="initial" style="font-family:initial">initial</option>
+        </select>
+        <div class="setting-title">Font Size</div>
+        <input id="font-slider" class="setting-slider" type="range" min="5", max="30" step="1" value="13">
+        <div class="setting-title">Line Space</div>
+        <input id="line-slider" class="setting-slider" type="range" min="1", max="4" step="0.25" value="2">
+      </div>
+      <div id="preview-setting" class="setting-elem">
         <div class="setting-title">Sentence Structure Preview</div>
-        <input id="sent-slider" class="setting-slider" type="range" min="0", max="3" step="1" value="0">
+        <input id="preview-slider" class="setting-slider" type="range" min="0", max="3" step="1" value="0">
         <div class="setting-desc"><div>No</div><div>1</div><div>2</div><div>All</div></div>
+      </div>
+      <div id="struct-setting" class="setting-elem">
+        <div class="setting-title">Sentence Structure</div>
+        <div id="checkbox-wrapper">
+          <input type="checkbox" name="subj" id="chkSubj" class="struct-chk" checked><label for="chkSubj" class="lb_subj">Subject</label>
+          <input type="checkbox" name="verb" id="chkVerb" class="struct-chk" checked><label for="chkVerb" class="lb_verb">Verb</label>
+          <input type="checkbox" name="obj" id="chkObj" class="struct-chk" checked><label for="chkObj" class="lb_obj">Object</label>
+          <input type="checkbox" name="comp" id="chkComp" class="struct-chk" checked><label for="chkComp" class="lb_comp">Complement</label>
+          <input type="checkbox" name="aux" id="chkAux" class="struct-chk" checked><label for="chkAux" class="lb_aux">Auxiliary</label>
+        </div>
       </div>
       <div id="sep-setting" class="setting-elem">
         <span class="setting-title">Sentence Seperator</span>
@@ -891,7 +928,7 @@
     }
   });
 
-  document.querySelector("#sent-slider").addEventListener('change', function(evt){
+  document.querySelector("#preview-slider").addEventListener('change', function(evt){
     var value = parseInt(evt.target.value);
     var sents = document.querySelectorAll("span.sent");
     switch(value){
@@ -913,6 +950,37 @@
         break;
     }
   });
+  
+  document.querySelectorAll(".struct-chk").forEach((chk) => {
+    // Initialize
+    console.log(chk.id);
+    document.querySelector(".color-reader").dataset[chk.id] = 1;
+
+    chk.addEventListener("change",function(evt){
+      if(evt.target.checked){
+        document.querySelector(".color-reader").dataset[evt.target.id] = 1;
+      }else{
+        delete document.querySelector(".color-reader").dataset[evt.target.id];
+      }
+    });
+  });
+
+  document.querySelector("#font").addEventListener('change',function(evt){
+    var font = evt.target.value;
+    document.documentElement.style.setProperty('--font', font);
+  });
+
+  document.querySelector("#font-slider").addEventListener('change', function(evt){
+    var fontSize = evt.target.value;
+    document.documentElement.style.setProperty('--font-size', fontSize+"pt");
+  });
+
+  document.querySelector("#line-slider").addEventListener('change', function(evt){
+    var lineHeight = evt.target.value;
+    document.documentElement.style.setProperty('--line-height', lineHeight);
+  });
+
+    
 
   document.querySelector("#menu-btn").addEventListener('click', function(evt){
     if(evt.currentTarget.dataset.on){delete evt.currentTarget.dataset.on;}
