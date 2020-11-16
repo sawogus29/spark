@@ -699,11 +699,11 @@
     }
   }
 
-  sents = document.querySelectorAll("article > p > span.sent");
-  for(let sent of sents){
-    sent.addEventListener("touchstart", onTouchStart);
-    sent.addEventListener("touchend", onTouchEnd);
-    sent.addEventListener("touchmove", onTouchMove);
+  var ps = document.querySelectorAll("article p");
+  for(let p of ps){
+    p.addEventListener("touchstart", onTouchStart);
+    p.addEventListener("touchend", onTouchEnd);
+    p.addEventListener("touchmove", onTouchMove);
   }
 
   var touch_timeout;
@@ -745,23 +745,31 @@
   }
     
   function onDblClick(evt){
-    if(evt.currentTarget.className != "sent"){
-        evt.currentTarget.style.backgroundColor="white";
+    var nSent;
+    if(evt.target.tagName == "P"){
+      var touch = evt.changedTouches[0];
+      var sents = evt.target.querySelectorAll(".sent");
+      for(sent of sents){
+        var rect = sent.getBoundingClientRect();
+        if((rect.left < touch.clientX && rect.right > touch.clientX) && 
+            (rect.top < touch.clientY && rect.top+rect.height > touch.clientY)){
+          nSent = sent;
+          break;
+        }
+      }
+    }else{
+      nSent = evt.target.closest(".sent");
     }
     
-    changeSpanColor(evt.currentTarget);
+    if(nSent){ changeSpanColor(nSent); }
 
     evt.stopPropagation();
   }
 
   var httpRequest;
   function onClick(evt){
-    // word event delegation
-    if(evt.target.className == "word"){
-      // var sent = evt.currentTarget.innerText;
-      var sent = evt.target.closest(".sent").innerText;
-      var word = evt.target.innerText;
-      
+    var sent, word;
+    function sendDictRequest(word){
       // send dictionary request
       httpRequest = new XMLHttpRequest();
       httpRequest.onreadystatechange = function(){
@@ -794,9 +802,29 @@
       }
       httpRequest.open('GET', 'https://api.dictionaryapi.dev/api/v2/entries/en/'+word, true)
       httpRequest.send(null);
+    }
+    function onWordClick(nWord){
+      sent = nWord.closest(".sent").innerText;
+      word = nWord.innerText;
+      
+      sendDictRequest(word);
+      
       with(evt.target.getClientRects()[0]){
-      showDictModal(word, "...searching",left, top);
+        showDictModal(word, "...searching",left, top);
       }
+    }
+    // function onSentClick(nSent){ }
+    // function onParaClick(nPara){ }
+    switch(evt.target.className){
+      case "word":
+        onWordClick(evt.target);
+        break;
+      case "sent":
+        // onSentClick();
+        break;
+      default:  // p-tag
+        // onParaClick();
+        break;
     }
   }
 
@@ -811,7 +839,8 @@
   });
   
   function showDictModal(word, meaning, left, bottom){
-      modal.style.display = "block";
+      if(left || bottom){modal.style.display = "block";}
+      
       if(word != null){ modal.querySelector(".dict-word").innerText = word; }
       if(meaning != null) { modal.querySelector(".dict-meaning").innerText = meaning; }
       if(left != undefined){
@@ -819,12 +848,6 @@
         var modal_rect = modal.getBoundingClientRect();
         var mc_rect = mc.getBoundingClientRect();
         mc.style.left= ((left + mc_rect.width > modal_rect.width)?modal_rect.width-mc_rect.width:left) +"px";
-        // if(left + mc_rect.width > modal_rect.width){
-        //   mc.style.left = modal_rect.width-mc_rect.width +"px"; 
-        // }
-        // else{ 
-        //   mc.style.left= left +"px"; 
-        // }
       }
       if(bottom != undefined){
         // CAUTION: bottom=0 means bottom of screen
