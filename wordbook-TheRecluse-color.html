@@ -286,37 +286,48 @@
     .sent[data-color] > span.subj{
       background-color: pink;
     }
-    
     .sent[data-color] > span.verb{
       background-color: yellow;
     }
-
     .sent[data-color] > span.obj{
       background-color: lightgreen;
     }
+    .sent[data-color] > span.comp{
+      background-color: lightblue;
+    }
 
-    /* .sent[data-color] > span.aux{
-      background-color: lightgrey;
+    .sent[data-color] > span.aux{
+      color: #555555;
+      border-radius:1em;
+      padding-left:1px;
+      padding-right:1px;
+      border-left: 1px solid black;
+      border-right: 1px solid black;
+    }
+    
+    /* .sent[data-color] > span.aux::before{
+      content:"{";
+    }
+    .sent[data-color] > span.aux::after{
+      content:"}";
     } */
+    
+    .sent[data-color] .aux .subj{
+      color:black;
+      text-shadow: 0 0 3px pink;
+    }
+    .sent[data-color] .aux .verb{
+      text-shadow: 0 0 3px yellow;
+    }
+    .sent[data-color] .aux .obj{
+      text-shadow: 0 0 3px lightgreen;
+    }
+    .sent[data-color] .aux .obj{
+      text-shadow: 0 0 3px lightblue;
+    }
 
     
   </style>
-  <script>
-    // partFormats = {
-    //   "subj":{
-    //       "color":"Red",
-    //       "border-color":"Pink"
-    //   },
-    //   "verb":{
-    //       "color":"Yellow",
-    //       "border-color":"LightYellow"
-    //   },
-    //   "obj":{
-    //       "color":"Green",
-    //       "border-color":"LightGreen"
-    //   }
-    // }
-  </script>
 
 </head>
 <body>
@@ -571,11 +582,11 @@
   userId = "jaehyeon";
   displayName = "Jaehyeon Park";
 
-  userId="";
-  while(userId==""){
-    userId = prompt("ID를 입력해주세요", "");
-  }
-  userId+="-RC";
+  // userId="";
+  // while(userId==""){
+  //   userId = prompt("ID를 입력해주세요", "");
+  // }
+  // userId+="-RC";
 
   ref_words = database.ref('users/'+userId+'/words/');
   readUserData();
