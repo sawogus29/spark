@@ -27,7 +27,14 @@ return
 
 $a::
 Send, ^x
-Send, <span class="mod">
+Send, <span class="aux">
+Send, ^v
+Send, </span>
+return
+
+$c::
+Send, ^x
+Send, <span class="comp">
 Send, ^v
 Send, </span>
 return
