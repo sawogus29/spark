@@ -798,9 +798,6 @@
     window.clearTimeout(touch_timeout);
     console.log("onTouchStart");
     
-    // save progress
-    let progress = Array.from(ps).indexOf(evt.currentTarget);
-    setCookie('progress', progress, 30);
   }
 
   function onTouchMove(evt){
@@ -810,7 +807,13 @@
   }
 
   function onTouchEnd(evt){
-    if(isMoved){isMoved=false; isFirstTap=true; return;}
+    if(isMoved){
+      isMoved=false; isFirstTap=true; 
+      // save progress
+      let progress = Array.prototype.indexOf.call(ps, evt.currentTarget);
+      setCookie('progress', progress, 30);
+      return;
+    }
 
     if(isFirstTap){
       touch_timeout = window.setTimeout(function(){
