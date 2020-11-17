@@ -8,6 +8,31 @@
   <meta name="description" content="The HTML5 Herald">
   <meta name="author" content="SitePoint">
   <style>
+    /* Nav bar */
+    .navbar {
+      background-color: white;
+      display:flex;
+      position:fixed;
+      bottom:0;
+      left:0;
+      width:100%;
+      padding: 5px 0;
+      border-top: 1px solid black;
+    }
+
+    .navbar div {
+      flex: 1;
+      text-align: center;
+    }
+
+    .navbar img {
+      width: 15vw;
+      height: 15vw;
+      max-width: 80px;
+      max-height: 80px;
+    }
+    
+    /* wordbook */
     #words-container {
       margin-top: 10vw;
     }
@@ -57,14 +82,15 @@
       margin: 0px;
       line-height: 150%;
     }
+
     
   </style>
 
 </head>
 <body>
-    <header>
-        <h2><span id="title-user-id"></span>'s WordBook</h2>
-    </header>
+  <header>
+    <h2><span id="title-user-id"></span>'s WordBook</h2>
+  </header>
   <div id="words-container">
     <div class="word-unit" id="word-templete">
       <div class="word-wrapper">
@@ -74,6 +100,10 @@
         <div class="sent-unit"><p class="sent">This is a example string.</p>[offset]<span class="offset">100</span></div> 
       </div>
     </div>
+  </div>
+  <div class="navbar">
+    <div class="navbar-button" data-target="home"><a href="./main-activity.html"><img src="./res/home_no.svg" alt="Home"></a></div>
+    <div class="navbar-button" data-target="wordbook"><a href="/wordbook-activity.html"><img src="./res/wordbook.svg" alt="Wordbook"></a></div>
   </div>
 
   <script src="./lib/doubleTap.js"></script>
