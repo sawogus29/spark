@@ -40,6 +40,7 @@
       margin: 10px 0px;
       padding: 5px 10px;
       border-radius: 5px;
+      background-color: white;
       box-shadow: 0px 0px 5px grey;
     }
     
@@ -613,17 +614,53 @@
   }
   
   //=================================================================
+  //================ cookie =======================================
+  function setCookie(cname,cvalue,exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires=" + d.toGMTString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  }
 
+  function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
+  function checkCookie() {
+    var user=getCookie("userId");
+    if (user != "") {
+      alert("Welcome again " + user);
+    } else {
+      user = prompt("Please enter your name:","");
+      if (user != "" && user != null) {
+        setCookie("username", user, 30);
+      }
+    }
+  }
+
+  //===============================================================
   var database = firebase.database();
   // No Login
   userId = "jaehyeon";
   displayName = "Jaehyeon Park";
 
-  // userId="";
-  // while(userId==""){
-  //   userId = prompt("ID를 입력해주세요", "");
-  // }
-  // userId+="-RC";
+  userId=getCookie("userId");
+  while(userId=="" || userId == null){
+     userId = prompt("ID를 입력해주세요", "");
+  }
+  setCookie("userId", userId, 30);
 
   ref_words = database.ref('users/'+userId+'/words/');
   readUserData();
@@ -760,6 +797,10 @@
   function onTouchStart(evt){
     window.clearTimeout(touch_timeout);
     console.log("onTouchStart");
+    
+    // save progress
+    let progress = Array.from(ps).indexOf(evt.currentTarget);
+    setCookie('progress', progress, 30);
   }
 
   function onTouchMove(evt){
@@ -965,28 +1006,40 @@
     });
   });
 
+  var font = getCookie('font');
+  if(font != "" && font != null){ document.documentElement.style.setProperty('--font', font); }
   document.querySelector("#font").addEventListener('change',function(evt){
-    var font = evt.target.value;
+    font = evt.target.value;
     document.documentElement.style.setProperty('--font', font);
+    setCookie('font', font, 30);
   });
 
+  var fontSize = getCookie('font-size');
+  if(fontSize != "" && font != null){ document.documentElement.style.setProperty('--font-size',fontSize);}
   document.querySelector("#font-slider").addEventListener('change', function(evt){
-    var fontSize = evt.target.value;
+    fontSize = evt.target.value;
     document.documentElement.style.setProperty('--font-size', fontSize+"pt");
+    setCookie('font-size',fontSize,30);
   });
 
+  var lineHeight = getCookie('line-height');
+  if(lineHeight != "" && lineHeight != null){ document.documentElement.style.setProperty('--line-height', lineHeight);}
   document.querySelector("#line-slider").addEventListener('change', function(evt){
-    var lineHeight = evt.target.value;
+    lineHeight = evt.target.value;
     document.documentElement.style.setProperty('--line-height', lineHeight);
+    setCookie('line-height', lineHeight, 30);
   });
-
-    
+  
+  var progress = getCookie('pregress');
+  if(progress != "" && progress != null){
+    document.querySelector(".color-reader p:nth-child("+(parseInt(progress) +1)+")").scrollIntoView();
+  }
 
   document.querySelector("#menu-btn").addEventListener('click', function(evt){
     if(evt.currentTarget.dataset.on){delete evt.currentTarget.dataset.on;}
     else{evt.currentTarget.dataset.on=1;}
     evt.stopPropagation();
-  })
+  });
 
   // prevent iphone double tap zoom
   document.querySelector("body").addEventListener('click', (evt)=>{console.log('body clicked');});
