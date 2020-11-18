@@ -1,0 +1,984 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>The HTML5 Herald</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+  <style>
+    :root {
+      --font: 'Times New Roman';
+      --font-size: 13pt;
+      --line-height: 2;
+    }
+
+    body {
+      touch-action: manipulation;
+    }
+
+    article {
+      -webkit-user-select: none; 
+      -ms-user-select: none;
+      user-select: none;
+      text-align: justify;
+      font-family: var(--font);
+      font-size: var(--font-size);
+      line-height: var(--line-height);
+      text-indent: 0.5em;
+    }
+
+    #words-container {
+      margin-top: 10vw;
+    }
+
+    #word-templete {
+      display: none;
+    }
+
+    div.word-unit {
+      margin: 10px 0px;
+      padding: 5px 10px;
+      border-radius: 5px;
+      background-color: white;
+      box-shadow: 0px 0px 5px grey;
+    }
+    
+    div.word-unit .word-wrapper {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+    }
+
+    div.word {
+      flex:1;
+      vertical-align: middle;
+    }
+    
+    div.word-unit .meaning{
+      margin-left: 10vw;
+      font-size:small;
+      line-height: 120%;
+      vertical-align: middle;
+    }
+    
+    div.word-unit .sents-container {
+      background-color: #eeeeee;
+      margin: 5px 0px;
+      padding: 0px 5px;
+      font-size: 3vw;
+    }
+    
+    div.word-unit .offset {
+      float: right;
+    }
+
+    div.sent-unit p {
+      margin: 0px;
+      line-height: 150%;
+    }
+    
+    article.fun-reader {
+      z-index:1;
+      display:none;
+    }
+
+    #title {
+      display: block;
+      margin: 20vh 5vw;
+      align-self: center;
+      text-align: center;
+      font-size: 8vw;
+      font-family: var(--font);
+    }
+
+    #instruct {
+      position: relative;
+      /* bottom:0; */
+      margin-right: 20vw;
+      border: 1px solid white;
+      border-radius: 2vw;
+      box-shadow: 0px 0px 5px grey;
+      background-color: white;
+      /* background-color: red; */
+      z-index:0;
+    }
+    
+    #arrow {
+      position: relative;
+      margin-left: 5vw;
+      margin-top: -7vw;
+      width: 9vw;
+      height: 9vw;
+      transform: rotate(45deg);
+      background-color: white;
+      box-shadow: 0px 0px 5px grey;
+      z-index:-100;
+
+    }
+
+    /* The Modal (background) */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 10; /* Sit on top */
+      padding-top: 100px; /* Location of the box */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content {
+      position: absolute;
+      background-color: #fefefe;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 60%;
+      border-radius: 2vw;
+      box-shadow: 0px 0px 5px grey;
+    }
+    
+    .modal-content > .dict-word{
+      font-size: 1.5em;
+      font-weight: bold;
+      border-bottom: 1px solid black;
+    }
+    
+    .modal-content > .dict-meaning{
+      font-size: 1em;
+      line-height: 150%;
+      text-align:justify;
+    }
+
+    article span.sent[data-slash]::after{
+      content:"/";
+      font-weight:bolder;
+      font-size:1.5em;
+      line-height:5vw;
+      color:grey;
+    }
+    
+    /********** setting ********************/
+    
+    #setting-wrapper {
+      display:flex;
+      position:fixed;
+      flex-direction: column-reverse;
+      align-items:flex-end;
+      right: 5vw;
+      bottom: 5vw;
+    }
+    
+    /* #setting-wrapper > div {
+      margin: 1vw 0;
+    } */
+
+    #menu-btn {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 10vw;
+      height: 10vw;
+      border-radius: 5vw;
+      background-color: rgba(0,0,0,0.4);
+    }
+    
+    #menu-btn > div {
+      align-self:center;
+      width: 4vw;
+      height: 0.6vw;
+      background-color: white;
+      margin: 0.6vw 0;
+    }
+
+    
+    #menu-btn[data-on]{
+      background-color: red;
+    }
+
+    #setting-elems{
+      display:none;
+    }
+    
+    #menu-btn[data-on] ~ #setting-elems{
+      display:block;      
+    }
+
+    .setting-elem{
+      display:block;
+      width: 60vw;
+      padding: 1vw 3vw;
+      margin-bottom: 3vw;
+      border-radius: 1vw;
+      background-color: lightblue;
+      box-shadow: 0px 0px 5px grey;
+    }
+
+    .setting-title {
+      font-weight: bold;
+      margin: 1vw 0;
+    }
+
+    .setting-slider {
+      width: 100%;
+      height: 5vw;
+    }
+
+    .setting-desc {
+      display:flex;
+      justify-content: space-between;
+    }
+    
+    #sep-setting {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 15vw;
+      height: 8vw;
+    }
+
+    .switch input { 
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .switch-handle {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 8vw;
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    .switch-handle:before {
+      position: absolute;
+      content: "";
+      height: 6vw;
+      width: 6vw;
+      left: 1vw;
+      bottom: 1vw;
+      border-radius: 50%;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    input:checked + .switch-handle {
+      background-color: #2196F3;
+    }
+
+    input:checked + .switch-handle:before {
+      -webkit-transform: translateX(7vw);
+      -ms-transform: translateX(7vw);
+      transform: translateX(7vw);
+    }
+
+    /*********** Sentence Color **************/
+    
+    .color-reader[data-chk-subj] .sent[data-color] > span.subj, .lb_subj{
+      background-color: pink;
+    }
+    .color-reader[data-chk-verb] .sent[data-color] > span.verb, .lb_verb{
+      background-color: yellow;
+    }
+    .color-reader[data-chk-obj] .sent[data-color] > span.obj, .lb_obj{
+      background-color: lightgreen;
+    }
+    .color-reader[data-chk-comp] .sent[data-color] > span.comp, .lb_comp{
+      background-color: lightskyblue;
+    }
+    .color-reader[data-chk-aux] .sent[data-color] > span.aux, .lb_aux{
+      color: #555555;
+      border-radius:1em;
+      padding-left:1px;
+      padding-right:1px;
+      border-left: 1px solid black;
+      border-right: 1px solid black;
+    }
+    
+    /* .sent[data-color] > span.aux::before{
+      content:"{";
+    }
+    .sent[data-color] > span.aux::after{
+      content:"}";
+    } */
+    
+    .color-reader[data-chk-aux][data-chk-subj] .sent[data-color] .aux .subj{
+      color:black;
+      text-shadow: 0 0 3px pink;
+    }
+    .color-reader[data-chk-aux][data-chk-verb] .sent[data-color] .aux .verb{
+      text-shadow: 0 0 3px yellow;
+    }
+    .color-reader[data-chk-aux][data-chk-obj] .sent[data-color] .aux .obj{
+      text-shadow: 0 0 3px lightgreen;
+    }
+    .color-reader[data-chk-aux][data-chk-comp] .sent[data-color] .aux .comp{
+      text-shadow: 0 0 3px lightblue;
+    }
+
+    
+  </style>
+
+</head>
+<body>
+  <header>
+    <p id="title">Pride And Prejudice-1</p>
+    <div id="instruct"><ol>
+      <li>Tap a word for dictionary</li>
+      <li>Double Tap for Sentence Structure Preview</li>
+    </ol>
+    </div>
+    <div id="arrow"></div>
+  </header>
+  <div id="article-wrapper">
+  <article class="color-reader">
+<p><span class="sent" data-dif = "1"><span class="subj">It</span> <span class="verb">is</span> <span class="comp">a truth universally acknowledged</span>, <span class="aux">that <span class="subj">a single man in possession of a good fortune</span>, <span class="verb">must be</span> in want of a wife</span>.</span>
+</p>
+<p><span class="sent" data-dif = "1">However <span class="comp">little known</span> <span class="subj">the feelings or views of such a man</span> <span class="verb">may be</span> <span class="aux">on his first entering a neighbourhood</span>, <span class="subj">this truth</span> <span class="verb">is so well fixed in the minds of the surrounding families</span>, <span class="aux">that <span class="subj">he</span> <span class="verb">is considered</span> the rightful property of some one or other of their daughters</span>.</span>
+</p>
+<p><span class="sent" data-dif = "3">“My dear Mr. Bennet,” said his lady to him one day, “<span class="verb">have</span> <span class="subj">you</span> <span class="verb">heard</span> <span class="aux">that Netherfield Park is let at last</span>?”</span>
+</p>
+<p><span class="sent" data-dif = "3"><span class="subj">Mr. Bennet</span> <span class="verb">replied</span> <span class="obj">that he had not</span>.</span>
+</p>
+<p><span class="sent" data-dif = "3">“But it is,” returned she; “for <span class="subj">Mrs. Long</span> <span class="verb">has just been</span> here, and <span class="subj">she</span> <span class="verb">told</span> <span class="obj">me all about it</span>.”</span>
+</p>
+<p><span class="sent" data-dif = "3"><span class="subj">Mr. Bennet</span> <span class="verb">made</span> <span class="obj">no answer</span>.</span>
+</p>
+<p><span class="sent" data-dif = "2">“<span class="verb">Do</span> <span class="subj">you</span> <span class="verb">not want to know</span> <span class="obj">who has taken it</span>?” cried his wife impatiently.</span>
+</p>
+<p><span class="sent" data-dif = "2">“<span class="subj">You</span> <span class="verb">want to tell</span> <span class="obj">me</span>, and <span class="subj">I</span> <span class="verb">have</span> <span class="obj">no objection to hearing it</span>.”</span>
+</p>
+<p><span class="sent" data-dif = "2"><span class="subj">This</span> <span class="verb">was</span> <span class="obj">invitation enough</span>.</span>
+</p>
+<p><span class="sent" data-dif = "1">“Why, my dear, <span class="subj">you</span> <span class="verb">must know</span>, <span class="aux">Mrs. Long says</span> <span class="obj">that Netherfield is taken by a young man of large fortune from the north of England</span>; <span class="obj">that he came down on Monday in a chaise and four to see the place, and was so much delighted with it, that he agreed with Mr. Morris immediately</span>; <span class="obj">that he is to take possession before Michaelmas, and some of his servants are to be in the house by the end of next week</span>.”</span>
+</p>
+<p><span class="sent" data-dif = "3">“What <span class="verb">is</span> <span class="subj">his name</span>?”</span>
+</p>
+<p><span class="sent" data-dif = "1">“Bingley.”</span>
+</p>
+<p><span class="sent" data-dif = "3">“<span class="verb">Is</span> <span class="subj">he</span> <span class="comp">married or single</span>?”</span>
+</p>
+<p><span class="sent" data-dif = "3">“Oh!</span>
+<span class="sent" data-dif = "3">Single, <span class="aux">my dear</span>, to be sure!</span>
+<span class="sent" data-dif = "2"><span class="aux">A single man of large fortune; four or five thousand a year</span>.</span>
+<span class="sent" data-dif = "3"><span class="subj">What a fine thing</span> <span class="aux">for our girls</span>!”</span>
+</p>
+<p><span class="sent" data-dif = "3">“How so?</span>
+<span class="sent" data-dif = "3">How <span class="verb">can</span> <span class="subj">it</span> <span class="verb">affect</span> <span class="obj">them</span>?”</span>
+</p>
+<p><span class="sent" data-dif = "3">“<span class="aux">My dear Mr. Bennet</span>,” replied his wife, “how <span class="verb">can</span> you <span class="verb">be</span> <span class="comp">so tiresome</span>!</span>
+<span class="sent" data-dif = "3"><span class="subj">You</span> <span class="verb">must know</span> <span class="obj">that I am thinking of his marrying one of them</span>.”</span>
+</p>
+<p><span class="sent" data-dif = "3">“<span class="verb">Is that</span> <span class="subj">his design</span> <span class="aux">in settling here</span>?”</span>
+</p>
+<p><span class="sent" data-dif = "1">“<span class="aux">Design!</span></span>
+<span class="sent" data-dif = "3"><span class="aux">Nonsense</span>, how <span class="verb">can</span> <span class="subj">you</span> <span class="verb">talk</span> <span class="aux">so</span>!</span>
+<span class="sent" data-dif = "2">But <span class="subj">it</span> <span class="verb">is very likely</span> <span class="aux">that <span class="subj">he</span> <span class="verb">may fall in love with</span> <span class="obj">one of them</span>, and therefore you must visit him as soon as he comes</span>.”</span>
+</p>
+<p><span class="sent" data-dif = "3">“<span class="subj">I</span> <span class="verb">see no occasion for</span> <span class="obj">that</span>.</span>
+<span class="sent" data-dif = "2"><span class="subj">You and the girls</span> <span class="verb">may go</span>, or <span class="subj">you</span> <span class="verb">may send</span> <span class="obj">them</span> <span class="aux">by themselves</span>, <span class="aux">which perhaps will be still better</span>, <span class="aux">for as you are as handsome as any of them, <span class="subj">Mr. Bingley</span> <span class="verb">may like</span> <span class="obj">you</span> the best of the party</span>.”</span>
+</p>
+<p><span class="sent" data-dif = "3">“<span class="subj">My dear</span>, <span class="subj">you</span> <span class="verb">flatter</span> <span class="obj">me</span>.</span>
+<span class="sent" data-dif = "1"><span class="subj">I</span> certainly <span class="verb">have had</span> <span class="obj">my share of beauty</span>, but <span class="subj">I</span> <span class="verb">do not pretend to be</span> <span class="comp">anything extraordinary now</span>.</span>
+<span class="sent" data-dif = "2"><span class="subj">When <span class="subj">a woman</span> <span class="verb">has</span> <span class="obj">five grown-up daughters</span></span>, <span class="subj">she</span> <span class="verb">ought to give over</span> <span class="obj">thinking of her own beauty</span>.”</span>
+</p>
+<p><span class="sent" data-dif = "2">“<span class="aux">In such cases</span>, <span class="subj">a woman</span> <span class="verb">has not often</span> <span class="obj">much beauty to think of</span>.”</span>
+</p>
+<p><span class="sent" data-dif = "2">“But, <span class="aux">my dear</span>, <span class="subj">you</span> <span class="verb">must indeed go and see</span> <span class="obj">Mr. Bingley</span> <span class="subj">when he comes into the neighbourhood</span>.”</span>
+</p>
+<p><span class="sent" data-dif = "3">“<span class="subj">It</span> <span class="verb">is</span> <span class="comp">more than I engage for</span>, <span class="subj">I assure you</span>.”</span>
+</p>
+<p><span class="sent" data-dif = "2">“But <span class="verb">consider</span> <span class="obj">your daughters</span>.</span>
+<span class="sent" data-dif = "2">Only <span class="verb">think</span> <span class="obj">what an establishment it would be for one of them</span>.</span>
+<span class="sent" data-dif = "1"><span class="subj">Sir William and Lady Lucas</span> <span class="verb">are determined to go</span>, <span class="aux">merely on that account</span>, <span class="aux">for in general, you know, <span class="subj">they</span> <span class="verb">visit</span> <span class="obj">no newcomers</span></span>.</span>
+<span class="sent" data-dif = "2"><span class="aux">Indeed</span> <span class="subj">you</span> <span class="verb">must go</span>, <span class="aux">for <span class="subj">it</span> <span class="verb">will be</span> <span class="comp">impossible</span> for us to visit him if you do not</span>.”</span>
+</p>
+<p><span class="sent" data-dif = "1">“<span class="subj">You</span> <span class="verb">are</span> <span class="comp">over-scrupulous</span>, <span class="aux">surely</span>.</span>
+<span class="sent" data-dif = "1"><span class="subj">I</span> <span class="verb">dare say</span> <span class="obj">Mr. Bingley will be very glad to see you</span>; and <span class="subj">I</span> <span class="verb">will send</span> <span class="obj">a few lines</span> <span class="aux">by you</span> <span class="aux">to <span class="verb">assure</span> <span class="obj">him of my hearty consent to his marrying whichever he chooses of the girls</span></span>; <span class="aux">though <span class="subj">I</span> <span class="verb">must throw</span> in a good word for my little Lizzy</span>.”</span>
+</p>
+<p><span class="sent" data-dif = "3">“<span class="subj">I</span> <span class="verb">desire</span> <span class="obj">you will do no such thing</span>.</span>
+<span class="sent" data-dif = "1"><span class="subj">Lizzy</span> <span class="verb">is not</span> <span class="comp">a bit better than the others</span>; and <span class="subj">I</span> <span class="verb">am sure</span> <span class="obj">she is not half so handsome as Jane, nor half so good-humoured as Lydia</span>.</span>
+<span class="sent" data-dif = "2">But <span class="subj">you</span> <span class="verb">are always giving</span> <span class="obj">her the preference</span>.”</span>
+</p>
+<p><span class="sent" data-dif = "1">“<span class="subj">They</span> <span class="verb">have</span> <span class="obj">none of them much to recommend them</span>,” replied he; “<span class="subj">they</span> <span class="verb">are</span> <span class="comp">all silly and ignorant</span> <span class="aux">like other girls</span>; but <span class="subj">Lizzy</span> <span class="verb">has</span> <span class="obj">something more of quickness than her sisters</span>.”</span>
+</p>
+<p><span class="sent" data-dif = "3">“Mr. Bennet, how <span class="verb">can</span> <span class="subj">you</span> <span class="verb">abuse</span> <span class="obj">your own children</span> <span class="aux">in such a way</span>?</span>
+<span class="sent" data-dif = "3"><span class="subj">You</span> <span class="verb">take delight in</span> vexing me.</span>
+<span class="sent" data-dif = "3"><span class="subj">You</span> <span class="verb">have</span> <span class="obj">no compassion for my poor nerves</span>.”</span>
+</p>
+<p><span class="sent" data-dif = "3">“<span class="subj">You</span> <span class="verb">mistake</span> <span class="obj">me</span>, <span class="aux">my dear</span>.</span>
+<span class="sent" data-dif = "3"><span class="subj">I</span> <span class="verb">have</span> <span class="obj">a high respect for your nerves</span>.</span>
+<span class="sent" data-dif = "3"><span class="subj">They</span> <span class="verb">are</span> <span class="comp">my old friends</span>.</span>
+<span class="sent" data-dif = "2"><span class="subj">I</span> <span class="verb">have heard</span> <span class="obj">you mention them</span> <span class="aux">with consideration</span> <span class="aux">these last twenty years at least</span>.”</span>
+</p>
+<p><span class="sent" data-dif = "3">“Ah, <span class="subj">you</span> <span class="verb">do not know</span> <span class="obj">what I suffer</span>.”</span>
+</p>
+<p><span class="sent" data-dif = "2">“But <span class="subj">I</span> <span class="verb">hope</span> <span class="obj">you will get over it</span>, <span class="obj">and live to see many young men of four thousand a year come into the neighbourhood</span>.”</span>
+</p>
+<p><span class="sent" data-dif = "2">“<span class="subj">It</span> <span class="verb">will be no use to us</span>, <span class="aux">if <span class="subj">twenty such</span> <span class="verb">should come</span></span>, <span class="aux">since <span class="subj">you</span> <span class="verb">will not visit</span> them</span>.”</span>
+</p>
+<p><span class="sent" data-dif = "2">“<span class="verb">Depend upon</span> <span class="obj">it</span>, <span class="aux">my dear</span>, <span class="aux">that when there are twenty, <span class="subj">I</span> <span class="verb">will visit</span> <span class="obj">them all</span></span>.”</span>
+</p>
+<p><span class="sent" data-dif = "1"><span class="subj">Mr. Bennet</span> <span class="verb">was</span> <span class="comp">so odd a mixture of quick parts, sarcastic humour, reserve, and caprice</span>, <span class="aux">that <span class="subj">the experience of three-and-twenty years</span> <span class="verb">had been</span> <span class="comp">insufficient</span> to make his wife understand his character</span>.</span>
+<span class="sent" data-dif = "2"><span class="subj">Her mind</span> <span class="verb">was</span> <span class="comp">less difficult</span> to develop.</span>
+<span class="sent" data-dif = "1"><span class="subj">She</span> <span class="verb">was</span> <span class="comp">a woman of mean understanding, little information, and uncertain temper</span>.</span>
+<span class="sent" data-dif = "1"><span class="aux">When <span class="subj">she</span> <span class="verb">was</span> <span class="comp">discontented</span></span>, <span class="subj">she</span> <span class="comp">fancied</span> <span class="obj">herself nervous</span>.</span>
+<span class="sent" data-dif = "2"><span class="subj">The business of her life</span> <span class="verb">was</span> <span class="obj">to get her daughters married</span>; <span class="aux"><span class="subj">its solace</span> <span class="verb">was</span> <span class="comp">visiting and news</span></span>.</span>
+</p>
+
+  </article>
+ <div id="dict-modal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="dict-word">word</div>
+      <div class="dict-meaning">meaning</div>
+    </div>
+  </div>
+  <div id="setting-wrapper">
+    <div id="menu-btn"><div></div> <div></div> <div></div></div>
+    <div id="setting-elems">
+      <div id="font-setting" class="setting-elem">
+        <div class="setting-title">Font</div>
+        <select name="font" id="font" value="Times New Roman">
+          <option value="Georgia" style="font-family:Georgia">Georgia</option>
+          <option value="Palatino Linotype" style="font-family:Palatino Linotype">Palatino Linotype</option>
+          <option value="Book Antiqua" style="font-family:Book Antiqua">Book Antiqua</option>
+          <option selected value="Times New Roman" style="font-family:Times New Roman">Times New Roman</option>
+          <option value="Arial" style="font-family:Arial">Arial</option>
+          <option value="Helvetica" style="font-family:Helvetica">Helvetica</option>
+          <option value="Lucida Sans" style="font-family:Lucida Sans">Lucida Sans</option>
+          <option value="Tahoma" style="font-family:Tohoma">Tohoma</option>
+          <option value="Verdana" style="font-family:Verdana">Verdana</option>
+          <option value="Courier New" style="font-family:Courier New">Courier New</option>
+          <option value="initial" style="font-family:initial">initial</option>
+        </select>
+        <div class="setting-title">Font Size</div>
+        <input id="font-slider" class="setting-slider" type="range" min="5", max="30" step="1" value="13">
+        <div class="setting-title">Line Space</div>
+        <input id="line-slider" class="setting-slider" type="range" min="1", max="4" step="0.25" value="2">
+      </div>
+      <div id="preview-setting" class="setting-elem">
+        <div class="setting-title">Sentence Structure Preview</div>
+        <input id="preview-slider" class="setting-slider" type="range" min="0", max="3" step="1" value="0">
+        <div class="setting-desc"><div>No</div><div>1</div><div>2</div><div>All</div></div>
+      </div>
+      <div id="struct-setting" class="setting-elem">
+        <div class="setting-title">Sentence Structure</div>
+        <div id="checkbox-wrapper">
+          <input type="checkbox" name="subj" id="chkSubj" class="struct-chk" checked><label for="chkSubj" class="lb_subj">Subject</label>
+          <input type="checkbox" name="verb" id="chkVerb" class="struct-chk" checked><label for="chkVerb" class="lb_verb">Verb</label>
+          <input type="checkbox" name="obj" id="chkObj" class="struct-chk" checked><label for="chkObj" class="lb_obj">Object</label>
+          <input type="checkbox" name="comp" id="chkComp" class="struct-chk" checked><label for="chkComp" class="lb_comp">Complement</label>
+          <input type="checkbox" name="aux" id="chkAux" class="struct-chk" checked><label for="chkAux" class="lb_aux">Auxiliary</label>
+        </div>
+      </div>
+      <div id="sep-setting" class="setting-elem">
+        <span class="setting-title">Sentence Seperator</span>
+        <label class="switch">
+          <input id="sep-btn" type="checkbox">
+          <span class="switch-handle"></span>
+        </label>      
+      </div>
+    </div>    
+  </div>
+  <div id="words-container">
+    <div class="word-unit" id="word-templete">
+      <div class="word-wrapper">
+        <div class="word">example</div><div class="meaning">예시</div>
+      </div>
+      <div class="sents-container">
+        <div class="sent-unit"><p class="sent">This is a example string.</p>[offset]<span class="offset">100</span></div> 
+      </div>
+    </div>
+  </div>
+
+  <script src="./lib/doubleTap.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+  <script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyDd_mFhjZOXCRmv09ru8jB97Nk7EwEzk6A",
+    authDomain: "engbook-96968.firebaseapp.com",
+    databaseURL: "https://engbook-96968.firebaseio.com",
+    projectId: "engbook-96968",
+    storageBucket: "engbook-96968.appspot.com",
+    messagingSenderId: "238613987334",
+    appId: "1:238613987334:web:818432d0e89df2d65cc387",
+    measurementId: "G-GQ1RSREC30"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+
+  // Auth
+  var provider = new firebase.auth.GoogleAuthProvider();
+  var userId ="", displayName = "";
+  var ref_words;
+
+  function initUserDataOnAuth(user){
+    userId = user.uid;
+    displayName = user.displayName;
+    ref_words = database.ref('users/'+userId+'/words/');
+    readUserData();
+  }
+  
+  //=================================================================
+  //================ cookie =======================================
+  function setCookie(cname,cvalue,exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires=" + d.toGMTString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  }
+
+  function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
+  function checkCookie() {
+    var user=getCookie("userId");
+    if (user != "") {
+      alert("Welcome again " + user);
+    } else {
+      user = prompt("Please enter your name:","");
+      if (user != "" && user != null) {
+        setCookie("username", user, 30);
+      }
+    }
+  }
+
+  //===============================================================
+  var database = firebase.database();
+  // No Login
+  userId = "jaehyeon";
+  displayName = "Jaehyeon Park";
+
+  userId=getCookie("userId");
+  while(userId=="" || userId == null){
+     userId = prompt("ID를 입력해주세요", "");
+  }
+  setCookie("userId", userId, 30);
+
+  ref_words = database.ref('users/'+userId+'/words/');
+  readUserData();
+
+  // Write to Firebase
+  function writeUserData(userId, word, meaning, sent, offset) {
+    if(userId.length == 0){
+      return; 
+    }
+
+    ref_words.child(word).set({
+      word: word,
+      meaning: meaning,
+      sents: [{sent:sent, offset:offset}],
+      time: firebase.firestore.Timestamp.now().seconds
+    });
+    console.log(word);
+  }
+
+  // Read From Firebase
+  function readUserData(){
+    ref_words.orderByChild('time').on('child_added', function(snapshot){
+      var child_val = snapshot.val();
+      with(child_val){
+        appendWord(word, meaning, sents);
+      }
+      console.log(child_val);
+    });
+  }
+
+  function appendWord(word, meaning, sents){
+    function appendSent(sent, offset, container){
+      newSent = container.firstElementChild.cloneNode(true);
+      // var re = new RegExp(word, "gi");
+      // sent.replace(re, "<s></s>");
+      newSent.querySelector(".sent").innerText = sent;
+      newSent.querySelector(".offset").innerText = offset;
+      container.appendChild(newSent);
+    }
+    
+    words_container = document.querySelector("#words-container");
+    temp = words_container.querySelector("#word-templete").cloneNode(true);
+    temp.style.display = "static";
+    temp.id = "";
+    with(temp){
+      querySelector(".word").innerText = word;
+      querySelector(".meaning").innerText = meaning;
+      sents_container = querySelector(".sents-container");
+      for(_sent of sents){
+        appendSent(_sent.sent, _sent.offset, sents_container);
+      }
+      sents_container.removeChild(sents_container.firstElementChild)
+    }
+    words_container.prepend(temp);
+  }
+
+  //=================================================================
+  var sents = document.querySelectorAll("p > span.sent");
+
+  for(sent of sents){
+    splitElem2Words(sent);
+  }
+
+  console.log("....word tokenize end.......")
+
+  function splitElem2Words(elem){
+    var childs = elem.childNodes;
+    var newElem = elem.cloneNode(false);
+    var len = childs.length;
+    for(var i=0; i<len; i++){
+      var c = childs[i].cloneNode(true);
+      newElem.appendChild(c);
+      switch(c.nodeType){
+        case 3: // Bound Case : textNode(3)
+          splitTextNode2Words(c);
+          break;
+        case 1: // Recursive : Element
+          splitElem2Words(c);
+          break;
+        default:
+          console.log(c);
+          break;
+      }
+    }
+    
+    elem.replaceWith(newElem);
+  }
+
+  function splitTextNode2Words(textNode){
+    const re = /\w*/g
+    
+    console.log(textNode.wholeText);
+    while(textNode != undefined && textNode.wholeText.length > 0){
+      var matchs = textNode.wholeText.match(re);
+      var start_offset = 0;
+      var word_length = 0;
+
+      for(m of matchs){
+        if(m.length == 0){ start_offset++; continue;}
+
+        word_length = m.length;
+        break;
+      }
+      
+      if(start_offset > 0){
+        // Last non-word
+        if(start_offset >= textNode.length){break;}
+        textNode = textNode.splitText(start_offset);
+      }
+
+      // Not Last Word
+      if(word_length < textNode.wholeText.length){
+        var nextNode = textNode.splitText(word_length);
+      }
+      var wordNode = document.createElement("span");
+      wordNode.classList.add("word");
+      wordNode.appendChild(textNode.cloneNode());
+      textNode.replaceWith(wordNode);
+
+      textNode = nextNode;
+    }
+  }
+
+  var ps = document.querySelectorAll("article p");
+  for(let p of ps){
+    p.addEventListener("touchstart", onTouchStart);
+    p.addEventListener("touchend", onTouchEnd);
+    p.addEventListener("touchmove", onTouchMove);
+  }
+
+  var touch_timeout;
+  var isFirstTap = true;
+  var isMoved = false;
+  function onTouchStart(evt){
+    window.clearTimeout(touch_timeout);
+    console.log("onTouchStart");
+    
+  }
+
+  function onTouchMove(evt){
+    window.clearTimeout(touch_timeout);
+    isMoved = true;
+    console.log("onTouchMove");
+  }
+
+  function onTouchEnd(evt){
+    if(isMoved){
+      isMoved=false; isFirstTap=true; 
+      // save progress
+      let progress = Array.prototype.indexOf.call(ps, evt.currentTarget);
+      setCookie('progress', progress, 30);
+      return;
+    }
+
+    if(isFirstTap){
+      touch_timeout = window.setTimeout(function(){
+        onClick(evt);
+        isFirstTap = true;
+      }, 250);
+      isFirstTap = false;
+    }else{
+      onDblClick(evt);
+      isFirstTap = true;
+    }
+    console.log("onTouchEnd");
+  }
+
+  function changeSpanColor(target){
+    if(!target.dataset.color){
+      target.dataset.color=1;
+    }else{
+      delete target.dataset.color;
+    }
+  }
+    
+  function onDblClick(evt){
+    var nSent;
+    if(evt.target.tagName == "P"){
+      var touch = evt.changedTouches[0];
+      var sents = evt.target.querySelectorAll(".sent");
+      for(sent of sents){
+        var rect = sent.getBoundingClientRect();
+        if((rect.left < touch.clientX && rect.right > touch.clientX) && 
+            (rect.top < touch.clientY && rect.top+rect.height > touch.clientY)){
+          nSent = sent;
+          break;
+        }
+      }
+    }else{
+      nSent = evt.target.closest(".sent");
+    }
+    
+    if(nSent){ changeSpanColor(nSent); }
+
+    evt.stopPropagation();
+  }
+
+  var httpRequest;
+  function onClick(evt){
+    var sent, word;
+    function sendDictRequest(word){
+      // send dictionary request
+      httpRequest = new XMLHttpRequest();
+      httpRequest.onreadystatechange = function(){
+        if (httpRequest.readyState === XMLHttpRequest.DONE){
+          if (httpRequest.status == 200){
+            // alert(httpRequest.responseText);
+            const json = JSON.parse(httpRequest.responseText);
+            var orign_word = "";
+            var meaning = "";
+
+            // word not found
+            if (json.title != undefined){ showDictModal(null, "...no meaning");return; }
+
+            // https://api.dictionaryapi.dev/api/v2/entries/en/bear
+            // homophone: 0:doing 1:Animal // meanings : 0:Noun  1:Verb // defintions: 0:carry weight 1:endure
+            for( hmp of json ) { 
+              orign_word = hmp.word;
+              meaning += hmp.meanings[0].definitions[0].definition + "\n";
+              break;
+            }
+            meaning = meaning.trim();
+            
+            showDictModal(orign_word, meaning);
+            writeUserData(userId, orign_word, meaning, sent, 100);
+          }else{
+            showDictModal(null,"dictionary request failed..." );
+            // alert("dictionary request failed...");
+          }
+        }
+      }
+      httpRequest.open('GET', 'https://api.dictionaryapi.dev/api/v2/entries/en/'+word, true)
+      httpRequest.send(null);
+    }
+    function onWordClick(nWord){
+      sent = nWord.closest(".sent").innerText;
+      word = nWord.innerText;
+      
+      sendDictRequest(word);
+      
+      with(evt.target.getClientRects()[0]){
+        showDictModal(word, "...searching",left, top);
+      }
+    }
+    // function onSentClick(nSent){ }
+    // function onParaClick(nPara){ }
+    switch(evt.target.className){
+      case "word":
+        onWordClick(evt.target);
+        break;
+      case "sent":
+        // onSentClick();
+        break;
+      default:  // p-tag
+        // onParaClick();
+        break;
+    }
+  }
+
+  // Get the modal
+  var modal = document.querySelector("#dict-modal");
+
+  // When the user clicks anywhere outside of the modal, close it
+  modal.addEventListener('click', function(event) {
+      if (event.target == modal) {
+          closeModal();
+      }
+  });
+  
+  function showDictModal(word, meaning, left, bottom){
+      if(left || bottom){modal.style.display = "block";}
+      
+      if(word != null){ modal.querySelector(".dict-word").innerText = word; }
+      if(meaning != null) { modal.querySelector(".dict-meaning").innerText = meaning; }
+      if(left != undefined){
+        var mc = modal.querySelector(".modal-content");
+        var modal_rect = modal.getBoundingClientRect();
+        var mc_rect = mc.getBoundingClientRect();
+        mc.style.left= ((left + mc_rect.width > modal_rect.width)?modal_rect.width-mc_rect.width:left) +"px";
+      }
+      if(bottom != undefined){
+        // CAUTION: bottom=0 means bottom of screen
+        const marginBottom = 1 * (document.documentElement.clientWidth / 100); // vw2px
+        var mc = modal.querySelector(".modal-content");
+        // word-top 2 bottom
+        var modal_rect = modal.getBoundingClientRect();
+        bottom = modal_rect.height - bottom;
+        var mc_rect = mc.getBoundingClientRect();
+        if(bottom + mc_rect.height + marginBottom > modal_rect.height){
+          mc.style.bottom="";
+          mc.style.top= 0+"px";
+        } else{
+          mc.style.top="";
+          mc.style.bottom= (bottom + marginBottom) +"px";
+        }
+      }
+  }
+
+  function closeModal(){
+      modal.style.display = "none";
+  }
+
+  document.querySelector("#sep-btn").addEventListener('change', function(evt){
+    var sents = document.querySelectorAll("span.sent");
+    if(evt.target.checked){
+      for(sent of sents){ sent.dataset.slash = 1; }
+    }else{
+      for(sent of sents){ delete sent.dataset.slash;}
+    }
+  });
+
+  document.querySelector("#preview-slider").addEventListener('change', function(evt){
+    var value = parseInt(evt.target.value);
+    var sents = document.querySelectorAll("span.sent");
+    switch(value){
+      case 0:
+        for(sent of sents){delete sent.dataset.color;}
+        break;
+      case 1:
+      case 2:
+        for(sent of sents){
+          if(sent.dataset.dif <= value){
+            sent.dataset.color = 1;
+          }else{
+            delete sent.dataset.color;
+          }
+        }
+        break;
+      default:
+        for(sent of sents){sent.dataset.color=1;}
+        break;
+    }
+  });
+  
+  document.querySelectorAll(".struct-chk").forEach((chk) => {
+    // Initialize
+    console.log(chk.id);
+    document.querySelector(".color-reader").dataset[chk.id] = 1;
+
+    chk.addEventListener("change",function(evt){
+      if(evt.target.checked){
+        document.querySelector(".color-reader").dataset[evt.target.id] = 1;
+      }else{
+        delete document.querySelector(".color-reader").dataset[evt.target.id];
+      }
+    });
+  });
+
+  var font = getCookie('font');
+  if(font != "" && font != null){ document.documentElement.style.setProperty('--font', font); }
+  document.querySelector("#font").addEventListener('change',function(evt){
+    font = evt.target.value;
+    document.documentElement.style.setProperty('--font', font);
+    setCookie('font', font, 30);
+  });
+
+  var fontSize = getCookie('font-size');
+  if(fontSize != "" && font != null){ document.documentElement.style.setProperty('--font-size',fontSize);}
+  document.querySelector("#font-slider").addEventListener('change', function(evt){
+    fontSize = evt.target.value;
+    document.documentElement.style.setProperty('--font-size', fontSize+"pt");
+    setCookie('font-size',fontSize,30);
+  });
+
+  var lineHeight = getCookie('line-height');
+  if(lineHeight != "" && lineHeight != null){ document.documentElement.style.setProperty('--line-height', lineHeight);}
+  document.querySelector("#line-slider").addEventListener('change', function(evt){
+    lineHeight = evt.target.value;
+    document.documentElement.style.setProperty('--line-height', lineHeight);
+    setCookie('line-height', lineHeight, 30);
+  });
+  
+  var progress = getCookie('progress');
+  if(progress != "" && progress != null){
+    document.querySelector(".color-reader p:nth-child("+(parseInt(progress) +1)+")").scrollIntoView();
+  }
+
+  document.querySelector("#menu-btn").addEventListener('click', function(evt){
+    if(evt.currentTarget.dataset.on){delete evt.currentTarget.dataset.on;}
+    else{evt.currentTarget.dataset.on=1;}
+    evt.stopPropagation();
+  });
+
+  // prevent iphone double tap zoom
+  document.querySelector("body").addEventListener('click', (evt)=>{console.log('body clicked');});
+
+  </script>
+</body>
+</html>

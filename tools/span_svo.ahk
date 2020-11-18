@@ -38,3 +38,7 @@ Send, <span class="comp">
 Send, ^v
 Send, </span>
 return
+
+$/::
+Send, </span>
+return
