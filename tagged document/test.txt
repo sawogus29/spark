@@ -1,0 +1,161 @@
+<p><span class="sent", data-dif = "1"><span class="aux">Twenty-five years later</span> <span class="subj">a ship</span> <span class="verb">appeared</span>, <span class="aux">on an afternoon in the planet's summer</span>.</span>
+</p>
+<p><span class="sent", data-dif = "3"><span class="subj">Arak Miller</span> <span class="verb">watched</span> <span class="obj">it</span><span class="aux">it</span> <span class="aux">from the mesa</span>.</span>
+</p>
+<p><span class="sent", data-dif = "3"><span class="aux">From Earth</span>, <span class="subj">he</span> <span class="verb">thought</span>.</span>
+<span class="sent", data-dif = "3">From Earth!</span>
+</p>
+<p><span class="sent", data-dif = "3">But <span class="subj">Arak Miller</span> <span class="verb">was</span> <span class="obj">an ordered man</span>.</span>
+<span class="sent", data-dif = "1"><span class="aux">Even now</span>,<span class="aux"> in the face of resurging visions of his wife</span>, <span class="aux">and his sons</span>, <span class="aux">and his work</span>, <span class="aux">and the mighty civilization from which he had been cut adrift</span>, <span class="subj">his thoughts</span> <span class="verb">were</span> <span class="obj">ordered</span>: <span class="aux">probably <span class="subj">the ship</span> <span class="verb">had arrived</span> <span class="obj">from Earth</span> <span class="aux">to resurvey one of the Class II uninhabitable planets of the Alpha Centaurus System</span></span>.</span>
+<span class="sent", data-dif = "2">Tomorrow <span class="subj">its scout ships</span> <span class="verb">would whip</span> <span class="aux">along the day sides</span> at <span class="aux">five thousand feet</span>.</span>
+<span class="sent", data-dif = "1">Tomorrow atop the mesa <span class="subj">he</span> <span class="verb">must light</span> <span class="obj">his pyres</span>, <span class="aux">some hundred-odd gigantic piles of pine trees and brush </span><span class="aux">that would burn with billowing smoke</span>.</span>
+<span class="sent", data-dif = "3"><span class="subj">He</span> <span class="verb">must signal</span> <span class="obj">the presence</span> <span class="aux">of a lone Earthman</span>.</span>
+</p>
+<p><span class="sent", data-dif = "1"><span class="aux">With a hypnotic intensity</span> <span class="subj">he</span> <span class="verb">stood</span> <span class="aux">watching the ship</span> until, toward evening, <span class="subj">it</span> <span class="verb">merged</span> <span class="aux">into the gray sky over the horizon</span>.</span>
+<span class="sent", data-dif = "2">Then<span class="subj"> he</span> <span class="verb">ran</span> <span class="aux">across the clearing</span> and <span class="aux">down to his house by the river that wound through the valley a thousand feet below</span>.</span>
+<span class="sent", data-dif = "3">"Come on, you fool!"</span>
+<span class="sent", data-dif = "2"><span class="subj">he</span> <span class="verb">shouted</span> to Marbach, sitting beneath a tree.</span>
+<span class="sent", data-dif = "2"><span class="subj">Arak Miller</span> <span class="verb">threw</span> <span class="obj">the figure </span>over his shoulder and <span class="verb">carried</span> <span class="obj">him</span> to the house.</span>
+<span class="sent", data-dif = "3"><span class="subj">He</span> <span class="verb">sat</span> <span class="obj">Marbach</span> <span class="aux">on a chair</span> and <span class="verb">went into</span> <span class="obj">the kitchen</span> <span class="aux">to eat</span>.</span>
+</p>
+<p><span class="sent", data-dif = "1"><span class="subj">Arak Miller</span> <span class="verb">had been</span> <span class="obj">nomadic</span> <span class="aux">the first few years after he crashed and had been abandoned for dead</span>, until <span class="subj">he</span> <span class="verb">found</span> <span class="aux">in the planet's narrow temperate zone</span> <span class="obj">one of the few arable regions capable of sustaining him</span>.</span>
+<span class="sent", data-dif = "1"><span class="subj">There</span> <span class="verb">was</span> <span class="obj">sufficient small game</span>, <span class="aux">the river was cool</span>, <span class="aux">and because the rain fell mainly in the valley</span>, <span class="aux">his pyres were safe</span>.</span>
+</p>
+<p><span class="sent", data-dif = "3"><span class="aux">In recent years</span> <span class="subj">he</span> <span class="verb">was</span> <span class="obj">always building</span>.</span>
+<span class="sent", data-dif = "1"><span class="subj">He</span> <span class="verb">had added</span> <span class="obj">a front porch</span> <span class="aux">to the cabin he had started with</span>, then <span class="obj">more rooms</span> <span class="aux">which he had never used</span>, then an <span class="obj">attic</span> <span class="aux">into which he never went</span>.</span>
+<span class="sent", data-dif = "3">Now <span class="subj">it</span> <span class="verb">was</span> <span class="obj">a house</span>.</span>
+<span class="sent", data-dif = "1"><span class="subj">It</span> <span class="verb">had</span> <span class="obj">chairs and tables</span>, <span class="obj">a bed</span>, <span class="obj">a rug of vines</span>, <span class="obj">a garden for vegetables and tobacco</span>, <span class="obj">and a garden for flowers</span>.</span>
+</p>
+<p><span class="sent", data-dif = "2"><span class="subj">He</span> <span class="verb">ate</span> <span class="obj">a leisurely meal of potatoes and corn and meat of the rabbit-like creatures which he trapped</span>.</span>
+<span class="sent", data-dif = "3"><span class="subj">Miss Gormeley</span> <span class="verb">was sitting</span> <span class="obj">on the porch</span> <span class="aux">as he went out</span>.</span>
+<span class="sent", data-dif = "3"><span class="obj">"A ship's come,"</span> <span class="subj">he</span> <span class="verb">shouted</span>.</span>
+<span class="sent", data-dif = "3">"I may be saved, you understand?"</span>
+</p>
+<p><span class="sent", data-dif = "2"><span class="subj">He</span> <span class="verb">recalled</span> <span class="obj">he had intended to do something about Miss Gormeley's nostril</span>.</span>
+<span class="sent", data-dif = "3"><span class="aux">With one of his knives</span> <span class="subj">he</span> <span class="verb">scraped</span> <span class="aux">a little against the wall of her left nostril</span>.</span>
+<span class="sent", data-dif = "3">Then <span class="subj">he</span> <span class="verb">stood back</span>, satisfied.</span>
+<span class="sent", data-dif = "3"><span class="obj">"Now you look better,"</span> <span class="subj">he</span> <span class="verb">said</span>.</span>
+<span class="sent", data-dif = "3"><span class="aux">With a wry grin</span> <span class="subj">he</span> <span class="verb">added</span>, <span class="obj">"You can smell better, too."</span></span> 
+</p>
+<p><span class="sent", data-dif = "2"><span class="aux">For a long time</span> <span class="subj">he</span> <span class="verb">could not sleep</span>, <span class="aux">remembering that he had been cut off in the prime of his life</span>.</span>
+<span class="sent", data-dif = "1"><span class="subj">He</span> <span class="verb">had been</span> <span class="obj">the Senior Astrophysicist</span> <span class="aux">in the Systems War Office on Earth</span>, <span class="aux"><span class="verb">working on</span> <span class="obj">the Second Einstein Modifications</span> <span class="aux">that promised travel to the more distant galactic Systems</span></span>.</span>
+<span class="sent", data-dif = "1"><span class="subj">He</span> <span class="verb">had completed</span> <span class="obj">six months of comparison spectography</span> <span class="aux">in the barren Centaurus System and</span> <span class="verb">had been about to take</span> <span class="obj">the year's return journey to Earth</span>, <span class="aux">looking forward to a vacation trip with his family to Venus City</span>.</span>
+<span class="sent", data-dif = "2"><span class="subj">He</span> <span class="verb">had been in</span> <span class="obj">the forefront of the free world's pushing back of the last frontiers of man</span>.</span>
+</p>
+<p><span class="sent", data-dif = "3"><span class="subj">He</span> <span class="verb">twisted</span> <span class="aux">on his bed</span> <span class="aux">in a wild agony of hope and yearning</span>.</span>
+<span class="sent", data-dif = "2"><span class="obj">"Someday soon,"</span> <span class="subj">he</span> <span class="verb">shouted</span><span class="aux"> to the walls</span>, "<span class="subj">I'll</span> <span class="verb">ride</span> <span class="obj">the monorail across the Western plains</span>."</span>
+<span class="sent", data-dif = "1"><span class="subj">He</span> <span class="verb">had discovered</span><span class="obj"> that it helped, to talk aloud,</span> <span class="aux">though none of his devices could make him forget he was a prisoner</span>.</span>
+<span class="sent", data-dif = "1"><span class="subj">To feel the Centaurus skies closing down on him and the alien mountains crushing him, so far from his work and those he loved,</span> <span class="verb">was</span> <span class="obj">to feel a terrible suffocation from which there was no release</span>.</span>
+</p>
+<p><span class="sent", data-dif = "1">But then <span class="subj">he</span> <span class="verb">would go doggedly</span> <span class="obj">to work</span>, or else <span class="verb">carve</span> <span class="obj">the life-size figures</span> <span class="aux">to keep him silent company</span>, <span class="aux">and try to forget</span>.</span>
+</p>
+<p><span class="sent", data-dif = "3"><span class="subj">He</span> <span class="verb">talked on and on</span>, and finally <span class="subj">he</span> <span class="verb">could talk no more</span>.</span>
+<span class="sent", data-dif = "3"><span class="subj">He</span> <span class="verb">slept</span>.</span>
+</p>
+<p><span class="sent", data-dif = "3"><span class="subj">He</span> <span class="verb">was awakened</span> by <span class="aux">a pattering on the roof</span>.</span>
+</p>
+<p><span class="sent", data-dif = "3">"Rain!"</span>
+<span class="sent", data-dif = "3"><span class="subj">he</span> <span class="verb">shouted</span>.</span>
+<span class="sent", data-dif = "3"><span class="subj">He</span> <span class="verb">jumped up</span> and <span class="verb">ran to the window socket</span>.</span>
+<span class="sent", data-dif = "3"><span class="subj">The rain clouds</span> <span class="verb">were</span> <span class="obj">high</span>, and <span class="obj">heavy with storm</span>.</span>
+</p>
+<p><span class="sent", data-dif = "3"><span class="subj">It</span> <span class="verb">struck</span> <span class="obj">him</span> <span class="aux">like a blow</span>: <span class="subj">they</span> <span class="verb">hung</span> <span class="aux">above the mesa</span>.</span>
+</p>
+<p><span class="sent", data-dif = "3">Above his pyres.</span>
+</p>
+<p><span class="sent", data-dif = "1"><span class="aux">In a panic</span> <span class="subj">he</span> <span class="verb">clambered up</span> <span class="obj">to the mesa</span>, <span class="aux">forgetting his breakfast</span>, <span class="aux">forgetting his outer clothing</span>, his mind in disorder.</span>
+</p>
+<p><span class="sent", data-dif = "3"><span class="subj">The shock wave</span> <span class="verb">pounded</span> <span class="obj">his eardrums</span>.</span>
+</p>
+<p><span class="sent", data-dif = "3"><span class="subj">He </span><span class="verb">was too startled</span> <span class="aux">to make words</span>.</span>
+<span class="sent", data-dif = "1"><span class="aux">With unbelieving eyes</span> <span class="subj">he</span> <span class="verb">saw</span>, <span class="aux">about five miles away where the river emptied into the sea</span>, <span class="obj">the black cloud of an atomic explosion rise into the sky to spread out under the rain</span>.</span>
+</p>
+<p><span class="sent", data-dif = "2"><span class="aux">Then suddenly</span> <span class="subj">he</span> <span class="verb">was running blindly</span> <span class="aux">through the rain</span>.</span>
+<span class="sent", data-dif = "3"><span class="subj">The scout</span> <span class="verb">must have come down</span>.</span>
+<span class="sent", data-dif = "3"><span class="subj">They</span> <span class="verb">must be testing</span>.</span>
+<span class="sent", data-dif = "2"><span class="subj">The area</span> <span class="verb">was ideal for</span> <span class="obj">testing atomic weapons</span>.</span>
+<span class="sent", data-dif = "3"><span class="subj">I</span> <span class="verb">must reach</span> <span class="obj">them</span> <span class="aux">before they leave</span>.</span>
+</p>
+<p><span class="sent", data-dif = "3"><span class="aux">Through heavy undergrowth</span> <span class="subj">he</span> <span class="verb">pushed his way</span> <span class="aux">down the slope to the valley</span>.</span>
+<span class="sent", data-dif = "3"><span class="subj">His foot</span> <span class="verb">slipped</span> <span class="obj">on an exposed root</span>.</span>
+<span class="sent", data-dif = "3"><span class="aux">With a sharp crack of bone</span>, <span class="subj">he</span> <span class="verb">fell</span>.</span>
+</p>
+<p><span class="sent", data-dif = "3"><span class="obj">"My ankle!</span>"</span>
+<span class="sent", data-dif = "3"><span class="subj">he</span> <span class="verb">screamed</span>, <span class="aux">with terror smashing at his mind</span>.</span>
+<span class="sent", data-dif = "3"><span class="subj">He</span> <span class="verb">managed to find</span> <span class="obj">two thick lengths of branch</span> <span class="aux">that would serve as crutches</span>.</span>
+<span class="sent", data-dif = "1">Then <span class="subj">he</span> <span class="verb">started hobbling</span> <span class="aux">awkwardly</span> <span class="aux">toward the river</span>.</span>
+</p>
+<p><span class="sent", data-dif = "2"><span class="aux">For an hour</span> <span class="subj">he</span> <span class="verb">forced himself on</span> <span class="aux">urgently along the river bank</span>, <span class="verb">now feeling</span> <span class="obj">knife-like pains</span> <span class="aux">slicing up through his body</span>.</span>
+<span class="sent", data-dif = "2"><span class="subj">The effort of moving</span><span class="verb"> was beginning</span> <span class="obj">to exhaust him</span>.</span>
+</p>
+<p><span class="sent", data-dif = "3"><span class="subj">He</span> <span class="verb">fell down</span>, <span class="verb">and rested a moment</span>.</span>
+<span class="sent", data-dif = "3"><span class="subj">He</span> <span class="verb">heard</span> <span class="obj">a tree crash in the forest ahead</span>.</span>
+<span class="sent", data-dif = "3"><span class="subj">He</span> <span class="verb">heard</span> <span class="obj">someone shout</span>.</span>
+</p>
+<p><span class="sent", data-dif = "3">A human voice!</span>
+</p>
+<p><span class="sent", data-dif = "2"><span class="subj">He</span> <span class="verb">began to sob</span>, <span class="aux">softly at first, then uncontrollably</span>.</span>
+<span class="sent", data-dif = "3">A human voice!</span>
+<span class="sent", data-dif = "3"><span class="subj">It</span> <span class="verb">had never been</span> <span class="obj">so sweet a sound</span>.</span>
+</p>
+<p><span class="sent", data-dif = "2"><span class="subj">He</span> <span class="verb">climbed painfully</span> <span class="obj">to his feet</span>, <span class="aux">crashed on through the undergrowth</span>.</span>
+<span class="sent", data-dif = "2"><span class="subj">The density of trees</span> <span class="verb">ended abruptly</span> and <span class="subj">he</span> <span class="verb">stopped</span>.</span>
+<span class="sent", data-dif = "2"><span class="aux">Around the scout ship in the clearing beyond</span>, <span class="subj">robot dredges</span> <span class="verb">were digging</span> <span class="obj">the foundations for buildings</span>.</span>
+<span class="sent", data-dif = "2"><span class="subj">Gray-uniformed men</span> <span class="verb">were setting up</span> <span class="obj">new-type atomic artillery at the perimeters</span>.</span>
+</p>
+<p><span class="sent", data-dif = "3"><span class="subj">Arak Miller</span> <span class="verb">drew</span> <span class="obj">a deep breath</span>.</span>
+<span class="sent", data-dif = "3"><span class="obj">"I'm saved,"</span> <span class="subj">he</span> <span class="verb">said</span>, <span class="subj">his voice</span> <span class="verb">breaking</span>.</span>
+<span class="sent", data-dif = "3">"<span class="verb">I'm </span><span class="verb">going to be</span> <span class="obj">a free man</span>!"</span>
+<span class="sent", data-dif = "2"><span class="subj">He</span> <span class="verb">tottered on the edge of hysteria</span>, but <span class="verb">controlled himself with a mighty effort of will</span>.</span>
+</p>
+<p><span class="sent", data-dif = "3"><span class="subj">He</span> <span class="verb">took a step forward</span><span class="aux"> to reach the clearing</span>.</span>
+<span class="sent", data-dif = "3">Then <span class="subj">he</span> <span class="verb">stopped</span>.</span>
+</p>
+<p><span class="sent", data-dif = "3"><span class="subj">Something</span> <span class="verb">was</span> <span class="obj">wrong</span>.</span>
+</p>
+<p><span class="sent", data-dif = "3"><span class="subj">He</span> <span class="verb">tried to put together</span> <span class="obj">the pieces of his mind</span>.</span>
+<span class="sent", data-dif = "1"><span class="subj">Everything</span> <span class="verb">looked</span> <span class="obj">normal</span>.</span>
+<span class="sent", data-dif = "1"><span class="aux">Construction going on</span>, <span class="aux">stores being transferred to temporary warehouses</span>, <span class="aux">all the usual activities of a scout party on an atomic testing mission</span>.</span>
+<span class="sent", data-dif = "3"><span class="subj">The artillery</span> <span class="verb">was</span> <span class="obj">pointing</span>—</span>
+</p>
+<p><span class="sent", data-dif = "3"><span class="subj">That</span> <span class="verb">was</span><span class="obj"> the flaw</span>.</span>
+</p>
+<p><span class="sent", data-dif = "3"><span class="subj">The artillery</span> <span class="verb">faced</span> <span class="obj">inward</span>.</span>
+</p>
+<p><span class="sent", data-dif = "3"><span class="subj">He</span> <span class="verb">looked back at</span> <span class="obj">the construction work</span>.</span>
+<span class="sent", data-dif = "2"><span class="obj">"Not foundations for buildings,"</span> <span class="subj">he</span> <span class="verb">said dully</span>.</span>
+<span class="sent", data-dif = "1">"Ditches."</span>
+</p>
+<p><span class="sent", data-dif = "3">As he watched, <span class="subj">a flag</span> <span class="verb">was run up on a pole</span>.</span>
+<span class="sent", data-dif = "3"><span class="subj">The dreams of Arak Miller</span> <span class="verb">crashed</span> <span class="obj">in his mind</span>.</span>
+</p>
+<p><span class="sent", data-dif = "2"><span class="subj">It</span> <span class="verb">was</span> <span class="obj">the flag of the slave world</span>, <span class="aux">super-imposed upon the symbol of the Systems</span>.</span>
+<span class="sent", data-dif = "1"><span class="aux">The world controlled by the dictators</span>, <span class="subj">which</span> <span class="aux">for centuries</span> <span class="verb">had existed</span> <span class="aux">alongside the free world in a perpetual cold war</span>.</span>
+<span class="sent", data-dif = "1"><span class="aux">During some stage of Arak Miller's long imprisonment</span>, <span class="aux">from Venus to Centaurus</span> <span class="subj">the dictators</span> <span class="verb">had taken over</span>.</span>
+</p>
+<p><span class="sent", data-dif = "3"><span class="aux">Hidden from guards</span>, <span class="subj">he</span> <span class="verb">lay on the ground</span> and<span class="verb"> watched for a long time</span>.</span>
+<span class="sent", data-dif = "1"><span class="aux">Only when the next batch of captives was taken out of the scout ship and lined up in front of the ditch</span>, did <span class="subj">he</span> <span class="verb">turn</span> <span class="obj">his gaze away</span>.</span>
+</p>
+<p><span class="sent", data-dif = "2"><span class="subj">He</span> <span class="verb">waited</span> <span class="aux">till the next shock wave had passed</span>, <span class="aux">then with tears streaming down his face</span>, <span class="verb">hobbled back in the rain</span> <span class="aux">toward the river</span>.</span>
+<span class="sent", data-dif = "3"><span class="subj">He</span> <span class="verb">crawled</span> <span class="aux">the last two miles</span> <span class="aux">to his house</span>.</span>
+<span class="sent", data-dif = "3"><span class="subj">Miss Gormeley</span> <span class="verb">was sitting</span> <span class="aux">where he had left her</span>.</span>
+<span class="sent", data-dif = "3"><span class="obj">"I am sorry,"</span> <span class="subj">he</span> <span class="verb">said painfully</span>.</span>
+<span class="sent", data-dif = "3">"<span class="subj">I</span> <span class="verb">will have to destroy</span> <span class="obj">you</span>.</span>
+<span class="sent", data-dif = "3"><span class="obj">And Marbach</span>.</span>
+<span class="sent", data-dif = "3"><span class="obj">And our house</span>, <span class="obj">and the pyres</span>.</span>
+<span class="sent", data-dif = "3"><span class="aux">And when all that is done</span>, <span class="subj">I</span> <span class="verb">will have to leave</span> <span class="obj">this area</span>.</span>
+<span class="sent", data-dif = "3"><span class="aux">Otherwise</span> <span class="subj">they</span> <span class="verb">might find me</span>."</span>
+</p>
+<p><span class="sent", data-dif = "2"><span class="subj">Miss Gormeley</span> <span class="verb">stared blindly</span> <span class="aux">out at the river</span>.</span>
+</p>
+<p><span class="sent", data-dif = "3"><span class="subj">He</span> <span class="verb">lay still</span> <span class="aux">on the floor</span>, <span class="verb">gasping for breath</span>.</span>
+<span class="sent", data-dif = "3"><span class="obj">"You see," </span><span class="subj">he</span> <span class="verb">explained</span>, "<span class="subj">I</span> <span class="verb">am not</span> <span class="obj">a prisoner</span>.</span>
+<span class="sent", data-dif = "3"><span class="subj">They</span> <span class="verb">are</span> <span class="obj">the prisoners</span>.</span>
+<span class="sent", data-dif = "3">All of them.</span>
+<span class="sent", data-dif = "3">All the world—but me."</span>
+</p>
+<p><span class="sent", data-dif = "3"><span class="subj">His eyes</span> <span class="verb">closed</span> <span class="aux">in exhaustion</span>.</span>
+<span class="sent", data-dif = "3"><span class="obj">"I like it here now,"</span> <span class="subj">he</span> <span class="verb">said</span>, <span class="aux">almost in a whisper</span>.</span>
+<span class="sent", data-dif = "3">"<span class="subj">I</span> <span class="verb">intend</span> <span class="obj">to stay</span>.</span>
+<span class="sent", data-dif = "2"><span class="aux">There must be some place here where</span> <span class="subj">they</span> <span class="verb">can never find me</span>, <span class="aux">you understand</span>?"</span>
+</p>
